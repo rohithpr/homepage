@@ -2,3 +2,13 @@ Hello {{ user }}
 <form method="get" action="/b/logout">
 	<input type="submit" value="Logout" />
 </form>
+
+<br/>
+
+{% for key, values in bookmarks.items %}<!-- Edit this portion with Bootstrap -->
+	Category: {{ key.name }} {{ key.row_number }} {{ key.column_number }}
+	{% for value in values %}
+		 </br> Value: <a href="{{ value.link }}"> {{ value.name }} {{value.row_number }}</a>
+	{% endfor %}
+	</br></br></br></br> 
+{% endfor %}
