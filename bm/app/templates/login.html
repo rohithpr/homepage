@@ -1,0 +1,6 @@
+<form method="post" action="/b/verify/">
+	{% csrf_token %}
+	<input type="text" name="username"/>
+	<input type="text" name = "password"/>
+	<input type="submit"/>
+</form>
