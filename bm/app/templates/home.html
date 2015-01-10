@@ -1,14 +1,21 @@
+<!-- Put this stuff into a navbar-inverse. 
+Convert the button to a normal link or whatever works, 
+just send it to the link "/b/logout/" -->
 Hello {{ user }}
 <form method="get" action="/b/logout">
 	<input type="submit" value="Logout" />
 </form>
 
-<br/>
-
-{% for key, values in bookmarks.items %}<!-- Edit this portion with Bootstrap -->
-	Category: {{ key.name }} {{ key.row_number }} {{ key.column_number }}
-	{% for value in values %}
-		 </br> Value: <a href="{{ value.link }}"> {{ value.name }} {{value.row_number }}</a>
+</br>
+<!-- container and row -->
+{% for col in columns %}
+	<!-- Define column here. Just once is enough. -->
+	{% for item in col %}
+		</br></br>Category Name: {{ item.0.name }}
+		{% for bookmark in item.1 %}
+			</br><a href="{{ bookmark.link }}">{{ bookmark.name }}</a>
+		{% endfor %}
 	{% endfor %}
-	</br></br></br></br> 
+	</br></br> END COLUMN </br></br> 
 {% endfor %}
+
