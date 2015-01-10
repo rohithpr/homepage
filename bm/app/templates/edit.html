@@ -11,9 +11,14 @@ Hello {{ user }}
 {% for col in columns %}
 	<!-- Define column here. Just once is enough. -->
 	{% for item in col %}
-		</br></br>Category Name: {{ item.0.name }}
+		</br></br>
+		<a href="/b/category_up/{{ item.0.id }}"> CatUp </a>
+		<a href="/b/category_down/{{ item.0.id }}"> CatDown </a>
+		Category Name: {{ item.0.name }}
 		{% for bookmark in item.1 %}
-			</br><a href="{{ bookmark.link }}">{{ bookmark.name }}</a>
+			</br><a href="/b/bookmark_up/{{ bookmark.id }}"> BmUp </a>
+			<a href="/b/bookmark_down/{{ bookmark.id }}"> BmDown </a>
+			<a href="{{ bookmark.link }}">{{ bookmark.name }}</a>
 		{% endfor %}
 	{% endfor %}
 	</br></br> END COLUMN </br></br> 
