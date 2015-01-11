@@ -6,6 +6,7 @@ class Category(models.Model):
 	name = models.CharField(max_length=21)
 	row_number = models.IntegerField(default=0)
 	column_number = models.IntegerField(default=0)
+	progress_bar_color = models.CharField(max_length=6, default="335544")
 
 	def __str__(self):
 		return str(self.user) + ' ' + str(self.name)
@@ -15,6 +16,7 @@ class Bookmark(models.Model):
 	name = models.CharField(max_length=50)
 	link = models.TextField()
 	row_number = models.IntegerField(default=0)
+	glyphicon = models.CharField(max_length=30, default="")
 
 	def __str__(self):
 		return str(self.category) + ' ' + str(self.name)

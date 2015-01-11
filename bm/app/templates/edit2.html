@@ -1,0 +1,96 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title>
+			Bookmarks
+		</title>
+	</head>
+	<style>
+		a:hover {
+			text-decoration: none;
+		}
+		.box {
+			border: 1px solid black;
+		}
+		.progress_style{
+			 width: 100%;
+			 font-size: 1em;
+			 text-align: left;
+		}
+		.cat_glyph_style {
+			color: #ffffff;
+			font-size: 0.9em;
+		}
+		.cat_glyph_style:hover {
+			color: #000000;
+		}
+		.bm_style {
+			color: #ccc;
+			font-size: 0.9em;
+		}
+		.bm_style:hover {
+			color: #000;
+		}
+		.category-container:hover{
+			background-color: rgba(170, 255, 255, 0.25);
+			border-radius: 10%;
+		}
+
+	</style>
+	<body>
+		<nav class="navbar navbar-inverse navbar-fixed-top" style="border-radius:0px;">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand">Bookmarks</a>
+				</div>
+				<div>
+					<ul class="nav navbar-nav">
+						<li><a href="/">Home: {{ user }}</a></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="/b/edit">Edit</a></li>
+						<li><a href="/b/logout">Logout</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		</br>
+		</br>
+
+		<div class="container-fluid">
+			<div class="row">
+				{% for col in columns %}
+					<div class="col-sm-2">
+						{% for item in col %}
+							</br>
+							<div class="category-container">
+								<div class="progress">
+								    <div class="progress-bar progress-bar-striped active progress_style" style="background-color: {{ item.0.progress_bar_color }};">
+										<a href="/b/category_up/{{ item.0.id }}" class="cat_glyph_style"> <span class="glyphicon glyphicon-arrow-up"></span> </a>
+										<a href="/b/category_down/{{ item.0.id }}" class="cat_glyph_style"> <span class="glyphicon glyphicon-arrow-down"></span> </a>
+										<a href="/b/category_left/{{ item.0.id }}" class="cat_glyph_style"> <span class="glyphicon glyphicon-arrow-left"></span> </a>
+										<a href="/b/category_right/{{ item.0.id }}" class="cat_glyph_style"> <span class="glyphicon glyphicon-arrow-right"></span> </a>
+										<a href="/b/random_color/{{ item.0.id }}" class="cat_glyph_style"> <span class="glyphicon glyphicon-random"></span> </a>
+										<span style="color:#ffffff">{{ item.0.name }}</span>
+									</div>
+								</div>
+
+								{% for bookmark in item.1 %}
+									<a href="/b/bookmark_up/{{ bookmark.id }}" class="bm_style"> <span class="glyphicon glyphicon-arrow-up"></span> </a>
+									<a href="/b/bookmark_down/{{ bookmark.id }}" class="bm_style"><span class="glyphicon glyphicon-arrow-down"></span></a>
+									<a href="/b/random_glyphicon/{{ bookmark.id }}" class="bm_style"> <span class="glyphicon glyphicon-random"></span> </a>
+									<a href="{{ bookmark.link }}">{{ bookmark.name }} <span class="glyphicon glyphicon-{{ bookmark.glyphicon }}"></span> </a>
+									</br>
+								{% endfor %}
+							</div>
+						{% endfor %}
+					</div>
+					<!-- </br></br> END COLUMN </br></br> -->
+				{% endfor %}
+			</div>
+		</div>
+	</body>
+</html>
+

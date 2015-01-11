@@ -5,6 +5,9 @@ from django.contrib.auth import authenticate, login, logout
 
 from app.models import Category, Bookmark
 
+import random
+import string
+
 ############################################################
 # SESSION STUFF
 ############################################################
@@ -32,6 +35,17 @@ def logout_page(request):
 ############################################################
 # HELPERS
 ############################################################
+
+GLYPHICONS = ['asterisk', 'plus', 'minus', 'euro', 'cloud', 'envelope', 'pencil', 'glass', 'music', 'search',
+			  'heart', 'star', 'star-empty', 'user', 'film', 'th-large', 'th', 'th-list', 'ok', 'remove',
+			  'off', 'cog', 'home', 'file', 'time', 'road', 'download', 'upload', 'inbox', 'play-circle', 
+			  'repeat', 'refresh', 'lock', 'flag', 'headphones', 'tag', 'tags', 'book', 'bookmark', 'print',
+			  'camera', 'facetime-video', 'picture', 'map-marker', 'tint', 'edit', 'play', 'pause', 'stop',
+			  'chevron-up', 'chevron-down', 'chevron-left', 'chevron-right', 'plus-sign', 'minus-sign', 'remove-sign',
+			  'ok-sign', 'question-sign', 'leaf', 'fire', 'plane', 'magnet', 'comment', 'shopping-cart', 'bullhorn',
+			  'bell', 'certificate', 'globe', 'wrench', 'filter', 'heart-empty', 'phone', 'pushpin', 'gbp', 'usd',
+			  'flash', 'record', 'send', 'cutlery', 'earphone', 'phone-alt', 'tower', 'tree-conifer', 'tree-deciduos', '',
+]
 
 def get_bookmarks(request):
 	categories = Category.objects.filter(user=request.user)
@@ -68,6 +82,13 @@ def get_bookmarks(request):
 
 	return [col_0, col_1, col_2, col_3, col_4, col_5]
 
+def get_max_row_number(items):
+	max_num = -1
+	for item in items:
+		if item.row_number > max_num:
+			max_num = item.row_number
+	return max_num
+
 ############################################################
 # MAIN
 ############################################################
@@ -86,7 +107,7 @@ def edit_page(request):
 				'user': request.user,
 				'columns': get_bookmarks(request),
 			}
-	return render(request, 'edit.html', context)
+	return render(request, 'edit2.html', context)
 
 @login_required(login_url='/b/login')
 def bookmark_up(request, bookmark_id):
@@ -124,7 +145,6 @@ def category_up(request, category_id):
 		current.save()
 	return HttpResponseRedirect('/b/edit')
 	
-
 @login_required(login_url='/b/login')
 def category_down(request, category_id):
 	current = Category.objects.get(id=category_id)
@@ -139,3 +159,71 @@ def category_down(request, category_id):
 		pass
 	return HttpResponseRedirect('/b/edit')
 	# return HttpResponse(str(current))
+
+@login_required(login_url='/b/login')
+def category_left(request, category_id):
+	current = Category.objects.get(id=category_id)
+	if current.column_number != 0:
+		user_categories = Category.objects.filter(user=request.user)
+		below = user_categories.filter(column_number=current.column_number).filter(row_number__gt=current.row_number)
+		                                           # Move stuff up to fill the hole
+		previous = user_categories.filter(column_number=current.column_number-1)
+
+		max_number = get_max_row_number(previous)
+		if max_number >= current.row_number:        # If it has more rows then insert.
+			previous = previous.filter(row_number__gte=current.row_number)
+			for idx in previous:                  # Make space for the category in the new column
+				idx.row_number += 1
+				idx.save()
+		else:                                      # If it has lesser rows then append
+			current.row_number = max_number + 1
+
+		for idx in below:
+			idx.row_number -= 1
+			idx.save()
+		
+		current.column_number -= 1
+		current.save()
+	return HttpResponseRedirect('/b/edit')
+
+@login_required(login_url='/b/login')
+def category_right(request, category_id):
+	current = Category.objects.get(id=category_id)
+	if current.column_number != 5:
+		user_categories = Category.objects.filter(user=request.user)
+		below = user_categories.filter(column_number=current.column_number).filter(row_number__gt=current.row_number)
+		                                           # Move stuff up to fill the hole
+		following = user_categories.filter(column_number=current.column_number+1)
+
+		max_number = get_max_row_number(following)
+		if max_number >= current.row_number:        # If it has more rows then insert.
+			following = following.filter(row_number__gte=current.row_number)
+			for idx in following:                  # Make space for the category in the new column
+				idx.row_number += 1
+				idx.save()
+		else:                                      # If it has lesser rows then append
+			current.row_number = max_number + 1
+
+		for idx in below:
+			idx.row_number -= 1
+			idx.save()
+		
+		current.column_number += 1
+		current.save()
+	return HttpResponseRedirect('/b/edit')
+
+@login_required(login_url='/b/login')
+def random_color(request, category_id):
+	current = Category.objects.get(id=category_id)
+	hexdigits = list(string.hexdigits+string.hexdigits+string.hexdigits+string.hexdigits+string.hexdigits+string.hexdigits)
+	random.shuffle(hexdigits)
+	current.progress_bar_color = ''.join(hexdigits[:6])
+	current.save()
+	return HttpResponseRedirect('/b/edit')
+
+@login_required(login_url='/b/login')
+def random_glyphicon(request, bookmark_id):
+	current = Bookmark.objects.get(id=bookmark_id)
+	current.glyphicon = random.choice(GLYPHICONS)
+	current.save()
+	return HttpResponseRedirect('/b/edit')
