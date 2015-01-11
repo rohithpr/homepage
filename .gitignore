@@ -2,6 +2,7 @@
 __pycache__/
 *.py[cod]
 python.exe
+db.sqlite3
 
 # C extensions
 *.so
