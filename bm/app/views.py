@@ -89,6 +89,11 @@ def get_max_row_number(items):
 			max_num = item.row_number
 	return max_num
 
+def get_random_color():
+	hexdigits = list(string.hexdigits * 6)
+	random.shuffle(hexdigits)
+	return ''.join(hexdigits[:6])
+
 ############################################################
 # MAIN
 ############################################################
@@ -131,6 +136,16 @@ def bookmark_down(request, bookmark_id):
 		current.save()
 	except:
 		pass
+	return HttpResponseRedirect('/b/edit')
+
+@login_required(login_url='/b/login')
+def delete_bookmark(request, bookmark_id):
+	current = Bookmark.objects.get(id=bookmark_id)
+	following = Bookmark.objects.filter(category=current.category).filter(row_number__gt=current.row_number)
+	for idx in following:
+		idx.row_number -= 1
+		idx.save()
+	current.delete()
 	return HttpResponseRedirect('/b/edit')
 
 @login_required(login_url='/b/login')
@@ -215,9 +230,7 @@ def category_right(request, category_id):
 @login_required(login_url='/b/login')
 def random_color(request, category_id):
 	current = Category.objects.get(id=category_id)
-	hexdigits = list(string.hexdigits+string.hexdigits+string.hexdigits+string.hexdigits+string.hexdigits+string.hexdigits)
-	random.shuffle(hexdigits)
-	current.progress_bar_color = ''.join(hexdigits[:6])
+	current.progress_bar_color = get_random_color()
 	current.save()
 	return HttpResponseRedirect('/b/edit')
 
@@ -226,4 +239,34 @@ def random_glyphicon(request, bookmark_id):
 	current = Bookmark.objects.get(id=bookmark_id)
 	current.glyphicon = random.choice(GLYPHICONS)
 	current.save()
+	return HttpResponseRedirect('/b/edit')
+
+@login_required(login_url='/b/login')
+def add_ten_random_bookmarks(request):
+	categories = list(Category.objects.filter(user=request.user))
+	for _ in range(10):
+		category = random.choice(categories)
+		raw_name = list(string.ascii_lowercase)
+		random.shuffle(raw_name)
+		name = ''.join(raw_name[:6])
+		link = ''.join(raw_name[-6:])
+		row_number = get_max_row_number(Bookmark.objects.filter(category=category)) + 1
+		glyphicon = random.choice(GLYPHICONS)
+		bookmark = Bookmark(category=category, name=name, link=link, row_number=row_number, glyphicon=glyphicon)
+		bookmark.save()
+	return HttpResponseRedirect('/b/edit')
+
+@login_required(login_url='/b/login')
+def add_five_random_categories(request):
+	categories = Category.objects.filter(user=request.user)
+	for idx in range(5):
+		raw_name = list(string.ascii_lowercase)
+		random.shuffle(raw_name)
+		name = ''.join(raw_name[:6])
+		column_number = random.randrange(0, 6)
+		row_number = get_max_row_number(categories.filter(column_number=column_number)) + 1
+		progress_bar_color = get_random_color()
+		category = Category(user=request.user, name=name, column_number=column_number, 
+			row_number=row_number, progress_bar_color=progress_bar_color)
+		category.save()
 	return HttpResponseRedirect('/b/edit')

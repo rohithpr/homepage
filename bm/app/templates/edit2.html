@@ -1,10 +1,12 @@
 <html>
 	<head>
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
 		<title>
-			Bookmarks
+			Bookmarks | Edit
 		</title>
 	</head>
 	<style>
@@ -50,6 +52,8 @@
 						<li><a href="/">Home: {{ user }}</a></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
+						<li><a href="/b/add_ten_random_bookmarks/">Add ten bookmarks</a></li>
+						<li><a href="/b/add_five_random_categories/">Add five categories</a></li>
 						<li><a href="/b/edit">Edit</a></li>
 						<li><a href="/b/logout">Logout</a></li>
 					</ul>
@@ -82,6 +86,8 @@
 									<a href="/b/bookmark_down/{{ bookmark.id }}" class="bm_style"><span class="glyphicon glyphicon-arrow-down"></span></a>
 									<a href="/b/random_glyphicon/{{ bookmark.id }}" class="bm_style"> <span class="glyphicon glyphicon-random"></span> </a>
 									<a href="{{ bookmark.link }}">{{ bookmark.name }} <span class="glyphicon glyphicon-{{ bookmark.glyphicon }}"></span> </a>
+<!-- 									<a href="/b/delete_bookmark/{{ bookmark.id }}" class="bm_style" style="text-align:right;"> <span class="glyphicon glyphicon-trash"></span> </a> -->
+									<span id="{{ bookmark.id }}" class="del_bm bm_style glyphicon glyphicon-trash"></span>
 									</br>
 								{% endfor %}
 							</div>
@@ -92,5 +98,12 @@
 			</div>
 		</div>
 	</body>
+	<script>
+		$(document).ready( function(){
+			$('.del_bm').dblclick( function(){
+				window.location.href='/b/delete_bookmark/' + this.id;
+			});
+		});
+	</script>
 </html>
 

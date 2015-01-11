@@ -16,7 +16,7 @@ class Bookmark(models.Model):
 	name = models.CharField(max_length=50)
 	link = models.TextField()
 	row_number = models.IntegerField(default=0)
-	glyphicon = models.CharField(max_length=30, default="")
+	glyphicon = models.CharField(max_length=30, default="asterisk")
 
 	def __str__(self):
 		return str(self.category) + ' ' + str(self.name)

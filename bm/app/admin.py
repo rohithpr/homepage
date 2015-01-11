@@ -6,7 +6,7 @@ class CategoryAdmin(admin.ModelAdmin):
 	list_filter = ['user']
 
 class BookmarkAdmin(admin.ModelAdmin):
-	list_display = ['category', 'name', 'row_number', 'glyphicon']
+	list_display = ['category', 'name', 'row_number', 'glyphicon', 'id']
 	list_filter = ['category']
 
 admin.site.register(Category, CategoryAdmin)
