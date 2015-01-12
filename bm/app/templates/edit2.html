@@ -106,6 +106,10 @@
 	</body>
 	<script>
 		$(document).ready( function(){
+			$('.glyphicon').hover( function(){
+				$(this).css('cursor', 'pointer');
+			});
+
 			$('.bm_del').dblclick( function(){
 				window.location.href='/b/trash_bookmark/' + this.id;
 			});
