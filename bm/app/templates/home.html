@@ -1,21 +1,123 @@
-<!-- Put this stuff into a navbar-inverse. 
-Convert the button to a normal link or whatever works, 
-just send it to the link "/b/logout/" -->
-Hello {{ user }}
-<a href="/">Home</a>
-<a href="/b/edit">Edit</a>
-<a href="/b/logout">Logout</a>
+<html>
+	<head>
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-</br>
-<!-- container and row -->
-{% for col in columns %}
-	<!-- Define column here. Just once is enough. -->
-	{% for item in col %}
-		</br></br>Category Name: {{ item.0.name }}
-		{% for bookmark in item.1 %}
-			</br><a href="{{ bookmark.link }}">{{ bookmark.name }}</a>
-		{% endfor %}
-	{% endfor %}
-	</br></br> END COLUMN </br></br> 
-{% endfor %}
+		<title>
+			Bookmarks | Home
+		</title>
+	</head>
+	<style>
+		a:hover {
+			text-decoration: none;
+		}
+		.box {
+			border: 1px solid black;
+		}
+		.progress_style{
+			 width: 100%;
+			 font-size: 1em;
+			 text-align: left;
+		}
+		.cat_glyph_style {
+			color: #ffffff;
+			font-size: 0.9em;
+		}
+		.cat_glyph_style:hover {
+			color: #000000;
+		}
+		.bm_style {
+			color: #ccc;
+			font-size: 0.9em;
+		}
+		.bm_style:hover {
+			color: #000;
+		}
+		.category-container:hover{
+			background-color: rgba(170, 255, 255, 0.25);
+			border-radius: 10%;
+		}
 
+	</style>
+	<body>
+		<nav class="navbar navbar-inverse navbar-fixed-top" style="border-radius:0px;">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand">Bookmarks</a>
+				</div>
+				<div>
+					<ul class="nav navbar-nav">
+						<li><a href="/">Home: {{ user }}</a></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="/b/edit">Edit</a></li>
+						<li><a href="/b/trash">Trash</a></li>
+						<li><a href="/b/logout">Logout</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		</br>
+		</br>
+
+		<div class="container-fluid">
+			<div class="row">
+				{% for col in columns %}
+					<div class="col-sm-2">
+						{% for item in col %}
+							</br>
+							<div class="category-container">
+								<div class="progress">
+								    <div class="progress-bar progress-bar-striped active progress_style" style="background-color: {{ item.0.progress_bar_color }};">
+										<span style="color:#ffffff">{{ item.0.name }}</span>
+									</div>
+								</div>
+
+								{% for bookmark in item.1 %}
+									<span id="{{ bookmark.id }}"></span>
+									<span id="{{ bookmark.id }}"></span>
+									<span id="{{ bookmark.id }}"></span>
+									<span id="{{ bookmark.id }}"></span>
+									<a href="{{ bookmark.link }}">
+										{{ bookmark.name }}
+									</a>
+									</br>
+								{% endfor %}
+							</div>
+						{% endfor %}
+					</div>
+					<!-- </br></br> END COLUMN </br></br> -->
+				{% endfor %}
+			</div>
+		</div>
+	</body>
+	<script>
+		$(document).ready( function(){
+			$('.glyphicon').hover( function(){
+				$(this).css('cursor', 'pointer');
+			});
+
+			$('.bm_del').dblclick( function(){
+				window.location.href='/b/trash_bookmark/' + this.id;
+			});
+
+			$('.bm_up').click( function(){
+				window.location.href='/b/bookmark_up/' + this.id;
+			});
+
+			$('.bm_down').click( function(){
+				window.location.href='/b/bookmark_down/' + this.id;
+			});
+
+			$('.bm_random').click( function(){
+				window.location.href='/b/random_glyphicon/' + this.id;
+			});
+
+			$('.cat_del').dblclick( function(){
+				window.location.href='/b/delete_category/' + this.id;
+			});
+		});
+	</script>
+</html>
