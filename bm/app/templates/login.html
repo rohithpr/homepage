@@ -10,14 +10,28 @@
     </head>
 
     <style>
-        .box {
-            background-color: rgba(211, 211, 211, 0.6);
-            border: 1px dotted rgba(211, 211, 211, 0.95);
-            border-radius: 2%;
+        .btn{
+            background: transparent;
+            color: #F2F2F2;
+            font-size: 1.2em;
+            color: #000;
+            border: 1px solid black;
+            width: 100%;
         }
-        .box:hover {
-            background-color: rgba(211, 211, 211, 0.8);
+
+        .btn:hover{
+            background: #eead0e;
+            color: #000000;
         }
+
+        .login{
+            background-color: #008b8b;
+        }
+
+        .signup{
+            background-color:#008b8b;
+        }
+
     </style>
 
     <body>
@@ -33,89 +47,97 @@
 
         <div class="container">
             <div class="row">
-                <div class="col-lg-5 col-md-5 box">
-                    <h3 class="text-center">Login</h3>
+                <div class="login col-sm-offset-8 col-sm-3">
+                    </br>
                     <form class="form-horizontal" method="post" action="/b/verify/">
                         {% csrf_token %}
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="email">Username </label>
-                            <div class="col-sm-10">
+                            <div class="col-sm-12">
                                 <input type="text" class="form-control" name="username" placeholder="Username"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="pwd">Password</label>
-                            <div class="col-sm-10">
+                            <div class="col-sm-12">
                                 <input type="password" class="form-control" name="password" placeholder="Password">
                             </div>
                         </div>
-<!--                         <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
-                                <div class="checkbox">
-                                    <label><input type="checkbox"> Remember me</label>
-                                </div>
-                            </div>
-                        </div> -->
                         <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
-                           	    <input type="submit" value="Login"/>
+                            <div class="col-xs-12">
+                                <input type="submit" value="Login" class="btn"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="new_user col-xs-12">
+                                <input type="button" value="New User?" class="btn"/>
                             </div>
                         </div>
                     </form>
                 </div>
 
-                <div class="col-lg-2 col-md-2">
-                <!-- Just to leave some space between Login and Sign Up -->
-                </div>
-
-                <div class="col-lg-5 col-md-5 box">
-                    <h3 class="text-center">Sign up</h3>
+                <div class="signup col-sm-offset-8 col-sm-3">
+                    </br>
                     <form class="form-horizontal" method="post" action="/b/add_user/">
                   	    {% csrf_token %}
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="text">Username</label>
-                            <div class="col-sm-10">
+                            <div class="col-sm-12">
                                 <input type="text" class="form-control" name="username" placeholder="Username">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="email">Email</label>
-                            <div class="col-sm-10">
-                                <input type="email" class="form-control" name="email" placeholder="Email">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="control-label col-sm-2" for="pwd">Password</label>
-                            <div class="col-sm-10">
+                            <div class="col-sm-12">
                                 <input type="password" class="form-control" name="password" placeholder="Password">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="pwd">Re-enter Password</label>
-                            <div class="col-sm-10">
-                                <input type="password" class="form-control" name="repassword" placeholder="Password">
+                            <div class="col-sm-12">
+                                <input type="password" class="form-control" name="repassword" placeholder="Re-enter password">
                             </div>
                         </div>
 
-<!--                         <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
-                                <div class="checkbox">
-                                    <label><input type="checkbox"> Remember me</label>
-                                </div>
-                            </div>
-                        </div> -->
-
                         <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
-                                <input type="submit" value="Sign Up"/>
+                            <div class="col-xs-12">
+                                <input type="submit" value="Sign Up" class="btn"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="old_user col-xs-12">
+                                <input type="button" value="Old User?" class="btn"/>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
+        <script type="text/javascript">
+            $(document).ready( function(){
+                $('.signup').hide();
+
+                $('.new_user').click( function(){
+                    $login = $('.login');
+                    $login.toggle();
+                    var username = $login.find('input[name=username]').val();
+                    var password = $login.find('input[name=password]').val();
+
+                    $signup = $('.signup');
+                    $signup.toggle();
+                    $signup.find('input[name=username]').val(username);
+                    $signup.find('input[name=password]').val(password);
+                });
+
+                $('.old_user').click( function(){
+                    $signup = $('.signup');
+                    $signup.toggle();
+                    var username = $signup.find('input[name=username]').val();
+                    var password = $signup.find('input[name=password]').val();
+
+                    $login = $('.login');
+                    $login.toggle();
+                    $login.find('input[name=username]').val(username);
+                    $login.find('input[name=password]').val(password);
+                });
+            });
+        </script>
     </body>
 </html>
