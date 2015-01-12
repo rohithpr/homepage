@@ -55,6 +55,7 @@
 						<li><a href="/b/add_ten_random_bookmarks/">Add ten bookmarks</a></li>
 						<li><a href="/b/add_five_random_categories/">Add five categories</a></li>
 						<li><a href="/b/edit">Edit</a></li>
+						<li><a href="/b/trash">Trash</a></li>
 						<li><a href="/b/logout">Logout</a></li>
 					</ul>
 				</div>
@@ -77,17 +78,22 @@
 										<a href="/b/category_left/{{ item.0.id }}" class="cat_glyph_style"> <span class="glyphicon glyphicon-arrow-left"></span> </a>
 										<a href="/b/category_right/{{ item.0.id }}" class="cat_glyph_style"> <span class="glyphicon glyphicon-arrow-right"></span> </a>
 										<a href="/b/random_color/{{ item.0.id }}" class="cat_glyph_style"> <span class="glyphicon glyphicon-random"></span> </a>
+										<span id="{{ item.0.id }}" class="cat_del cat_glyph_style glyphicon glyphicon-trash"></span>
 										<span style="color:#ffffff">{{ item.0.name }}</span>
 									</div>
 								</div>
 
 								{% for bookmark in item.1 %}
-									<a href="/b/bookmark_up/{{ bookmark.id }}" class="bm_style"> <span class="glyphicon glyphicon-arrow-up"></span> </a>
-									<a href="/b/bookmark_down/{{ bookmark.id }}" class="bm_style"><span class="glyphicon glyphicon-arrow-down"></span></a>
-									<a href="/b/random_glyphicon/{{ bookmark.id }}" class="bm_style"> <span class="glyphicon glyphicon-random"></span> </a>
-									<a href="{{ bookmark.link }}">{{ bookmark.name }} <span class="glyphicon glyphicon-{{ bookmark.glyphicon }}"></span> </a>
-<!-- 									<a href="/b/delete_bookmark/{{ bookmark.id }}" class="bm_style" style="text-align:right;"> <span class="glyphicon glyphicon-trash"></span> </a> -->
-									<span id="{{ bookmark.id }}" class="del_bm bm_style glyphicon glyphicon-trash"></span>
+									<span id="{{ bookmark.id }}" class="bm_up bm_style glyphicon glyphicon-arrow-up"></span>
+									<span id="{{ bookmark.id }}" class="bm_down bm_style glyphicon glyphicon-arrow-down"></span>
+									<span id="{{ bookmark.id }}" class="bm_random bm_style glyphicon glyphicon-random"></span>
+									<span id="{{ bookmark.id }}" class="bm_del bm_style glyphicon glyphicon-trash"></span>
+									<a href="{{ bookmark.link }}">
+										{% if bookmark.glyphicon  %}
+											<span class="glyphicon glyphicon-{{ bookmark.glyphicon }}"></span>
+										{% endif %}
+										{{ bookmark.name }}
+									</a>
 									</br>
 								{% endfor %}
 							</div>
@@ -100,8 +106,24 @@
 	</body>
 	<script>
 		$(document).ready( function(){
-			$('.del_bm').dblclick( function(){
-				window.location.href='/b/delete_bookmark/' + this.id;
+			$('.bm_del').dblclick( function(){
+				window.location.href='/b/trash_bookmark/' + this.id;
+			});
+
+			$('.bm_up').click( function(){
+				window.location.href='/b/bookmark_up/' + this.id;
+			});
+
+			$('.bm_down').click( function(){
+				window.location.href='/b/bookmark_down/' + this.id;
+			});
+
+			$('.bm_random').click( function(){
+				window.location.href='/b/random_glyphicon/' + this.id;
+			});
+
+			$('.cat_del').dblclick( function(){
+				window.location.href='/b/delete_category/' + this.id;
 			});
 		});
 	</script>

@@ -1,0 +1,92 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <!----><script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script><!-- -->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title>
+			Bookmarks | Trash
+		</title>
+	</head>
+	<style>
+		a:hover {
+			text-decoration: none;
+		}
+		.box {
+			border: 1px solid black;
+		}
+		.progress_style{
+			 width: 100%;
+			 font-size: 1em;
+			 text-align: left;
+		}
+		.cat_glyph_style {
+			color: #ffffff;
+			font-size: 0.9em;
+		}
+		.cat_glyph_style:hover {
+			color: #000000;
+		}
+		.bm_style {
+			color: #ccc;
+			font-size: 0.9em;
+		}
+		.bm_style:hover {
+			color: #000;
+		}
+		.category-container:hover{
+			background-color: rgba(170, 255, 255, 0.25);
+			border-radius: 10%;
+		}
+
+	</style>
+	<body>
+		<nav class="navbar navbar-inverse navbar-fixed-top" style="border-radius:0px;">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand">Bookmarks</a>
+				</div>
+				<div>
+					<ul class="nav navbar-nav">
+						<li><a href="/">Home: {{ user }}</a></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="/b/add_ten_random_bookmarks/">Add ten bookmarks</a></li>
+						<li><a href="/b/add_five_random_categories/">Add five categories</a></li>
+						<li><a href="/b/edit">Edit</a></li>
+						<li><a href="/b/trash">Trash</a></li>
+						<li><a href="/b/logout">Logout</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		</br></br></br></br>
+
+		<div class="container-fluid">
+			<div class="row">
+				{% for col in columns %}
+					<div class="col-sm-2">
+						{% for trash in col %}
+							</br>
+							<span id="{{ trash.id }}" class="trash_del bm_style glyphicon glyphicon-trash"></span>
+							<span id="{{ trash.id }}" class="trash_restore bm_style glyphicon glyphicon-retweet"></span>
+							{{ trash.name }}
+						{% endfor %}
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</body>
+	<script>
+		$(document).ready( function(){
+			$('.trash_del').dblclick( function(){
+				window.location.href='/b/delete_bookmark/' + this.id;
+			});
+
+			$('.trash_restore').click( function(){
+				window.location.href='/b/restore_bookmark/' + this.id;
+			});
+		});
+	</script>
+</html>

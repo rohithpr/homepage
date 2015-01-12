@@ -3,7 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 
-from app.models import Category, Bookmark
+from app.models import Category, Bookmark, Trash
 
 import random
 import string
@@ -103,7 +103,7 @@ def home_page(request):
 	context = {
 				'user': request.user,
 				'columns': get_bookmarks(request),
-			}
+	}
 	return render(request, 'home.html', context)
 
 @login_required(login_url='/b/login')
@@ -111,8 +111,38 @@ def edit_page(request):
 	context = {
 				'user': request.user,
 				'columns': get_bookmarks(request),
-			}
+	}
 	return render(request, 'edit2.html', context)
+
+@login_required(login_url='/b/login')
+def trash_page(request):
+	bookmarks = Trash.objects.all()
+	col_0 = []
+	col_1 = []
+	col_2 = []
+	col_3 = []
+	col_4 = []
+	col_5 = []
+	for idx in range(len(bookmarks)):
+		jdx = idx + 1
+		if jdx%6 == 0:
+			col_5.append(bookmarks[idx])
+		elif jdx%5 == 0:
+			col_4.append(bookmarks[idx])
+		elif jdx%4 == 0:
+			col_3.append(bookmarks[idx])
+		elif jdx%3 == 0:
+			col_2.append(bookmarks[idx])
+		elif jdx%2 == 0:
+			col_1.append(bookmarks[idx])
+		else:
+			col_0.append(bookmarks[idx])
+	columns = [col_0, col_1, col_2, col_3, col_4, col_5]
+	context = {
+				'columns': columns,
+				'user': request.user,
+	}
+	return render(request, 'trash.html', context)
 
 @login_required(login_url='/b/login')
 def bookmark_up(request, bookmark_id):
@@ -139,10 +169,40 @@ def bookmark_down(request, bookmark_id):
 	return HttpResponseRedirect('/b/edit')
 
 @login_required(login_url='/b/login')
-def delete_bookmark(request, bookmark_id):
+def trash_bookmark(request, bookmark_id): # Moves to trash!
 	current = Bookmark.objects.get(id=bookmark_id)
 	following = Bookmark.objects.filter(category=current.category).filter(row_number__gt=current.row_number)
 	for idx in following:
+		idx.row_number -= 1
+		idx.save()
+	bookmark = Trash(category=current.category, name=current.name, link=current.link, glyphicon=current.glyphicon)
+	bookmark.save()
+	current.delete()
+	return HttpResponseRedirect('/b/edit')
+
+@login_required(login_url='/b/login')
+def restore_bookmark(request, bookmark_id): # Moves back to bookmarks!
+	current = Trash.objects.get(id=bookmark_id)
+	bookmarks = Bookmark.objects.filter(category=current.category)
+	row_number = get_max_row_number(bookmarks) + 1
+	bookmark = Bookmark(category=current.category, name=current.name, link=current.link, 
+		row_number=row_number, glyphicon=current.glyphicon)
+	bookmark.save()
+	current.delete()
+	return HttpResponseRedirect('/b/trash')
+
+@login_required(login_url='/b/login')
+def delete_bookmark(request, bookmark_id): # Deletes from trash, no more recovery options.
+	current = Trash.objects.get(id=bookmark_id)
+	current.delete()
+	return HttpResponseRedirect('/b/trash')
+
+@login_required(login_url='/b/login')
+def delete_category(request, category_id): # No recovery.
+	current = Category.objects.get(id=category_id)
+	below = Category.objects.filter(user=request.user).filter(column_number=current.column_number)
+	below = below.filter(row_number__gt=current.row_number)
+	for idx in below:
 		idx.row_number -= 1
 		idx.save()
 	current.delete()
@@ -249,10 +309,12 @@ def add_ten_random_bookmarks(request):
 		raw_name = list(string.ascii_lowercase)
 		random.shuffle(raw_name)
 		name = ''.join(raw_name[:6])
-		link = ''.join(raw_name[-6:])
 		row_number = get_max_row_number(Bookmark.objects.filter(category=category)) + 1
-		glyphicon = random.choice(GLYPHICONS)
-		bookmark = Bookmark(category=category, name=name, link=link, row_number=row_number, glyphicon=glyphicon)
+		if random.random() < 0.1:
+			glyphicon = random.choice(GLYPHICONS)
+		else:
+			glyphicon = ''
+		bookmark = Bookmark(category=category, name=name, link=name, row_number=row_number, glyphicon=glyphicon)
 		bookmark.save()
 	return HttpResponseRedirect('/b/edit')
 
