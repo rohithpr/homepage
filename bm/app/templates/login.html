@@ -92,7 +92,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="new_user col-xs-12">
+                            <div class="old_user col-xs-12">
                                 <input type="button" value="New User?" class="btn"/>
                             </div>
                         </div>
@@ -127,7 +127,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="old_user col-xs-12">
+                            <div class="new_user col-xs-12">
                                 <input type="button" value="Old User?" class="btn"/>
                             </div>
                         </div>
@@ -139,7 +139,7 @@
             $(document).ready( function(){
                 $('.signup').hide();
 
-                $('.new_user').click( function(){
+                $('.old_user').click( function(){
                     $login = $('.login');
                     $login.toggle();
                     var username = $login.find('input[name=username]').val();
@@ -149,9 +149,10 @@
                     $signup.toggle();
                     $signup.find('input[name=username]').val(username);
                     $signup.find('input[name=password]').val(password);
+                    $('input[name=repassword]').focus();
                 });
 
-                $('.old_user').click( function(){
+                $('.new_user').click( function(){
                     $signup = $('.signup');
                     $signup.toggle();
                     var username = $signup.find('input[name=username]').val();
