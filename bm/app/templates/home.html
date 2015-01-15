@@ -86,6 +86,12 @@
 		</br>
 		</br>
 		</br>
+		<div class="container">
+			<ul class="nav nav-pills">
+				<li><a href="#" class="bm_collapser"> Collapse All </a></li>
+				<li><a href="#" class="bm_expander"> Expand All </a></li>
+			</ul>
+		</div>
 
 		<div class="container-fluid">
 			<div class="row">
@@ -95,14 +101,14 @@
 							</br>
 							<div class="category-container">
 								<div class="progress">
-								    <div class="progress-bar progress-bar-striped active progress_style" style="background-color: {{ item.0.progress_bar_color }};">
+								    <div class="progress-bar progress-bar-striped active progress_style" num="{{ item.0.id }}" style="background-color: {{ item.0.progress_bar_color }};">
 										<span style="color:#ffffff">{{ item.0.name }}</span>
 									</div>
 								</div>
 
 								{% for bookmark in item.1 %}
 									<a href="{{ bookmark.link }}">
-										<div class="bm_style">
+										<div class="bm_style cat_num_{{ item.0.id }}">
 										{% if bookmark.glyphicon  %}
 											<span class="glyphicon glyphicon-{{ bookmark.glyphicon }}"></span>
 										{% endif %}
@@ -119,6 +125,24 @@
 	</body>
 	<script>
 		$(document).ready( function(){
+
+			$('.bm_collapser').click( function(){
+				$('.bm_style').hide();
+			});
+
+			$('.bm_expander').click( function(){
+				$('.bm_style').show();
+			});
+
+			$('.progress_style').click( function(){
+				var cat_num = '.cat_num_' + $(this).attr('num');
+				$(cat_num).toggle();
+			});
+
+			$('.progress_style').hover( function(){
+				$(this).css('cursor', 'pointer');
+			});
+
 			$('.glyphicon').hover( function(){
 				$(this).css('cursor', 'pointer');
 			});
