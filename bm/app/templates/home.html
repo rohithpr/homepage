@@ -66,11 +66,12 @@
 
 								{% for bookmark in item.1 %}
 									<a href="{{ bookmark.link }}">
-										<div class="bm_style_home cat_num_{{ item.0.id }}">
-										{% if bookmark.glyphicon  %}
-											<span class="glyphicon glyphicon-{{ bookmark.glyphicon }}"></span>
-										{% endif %}
-										{{ bookmark.name }}</div>
+										<div class="bm_style cat_num_{{ item.0.id }}">
+											{% if bookmark.glyphicon  %}
+												<span class="glyphicon glyphicon-{{ bookmark.glyphicon }}"></span>
+											{% endif %}
+											{{ bookmark.name }}
+										</div>
 									</a>
 								{% endfor %}
 							</div>

@@ -12,6 +12,9 @@
 	<style>
 
 		{% include "style.html" %}
+		.bm_style {
+			text-align: left;
+		}
 
 	</style>
 	<body>
@@ -36,6 +39,15 @@
 		</nav>
 		</br>
 		</br>
+		</br>
+		<div class="container">
+			<ul class="nav nav-pills">
+				<li><a href="#" class="bm_collapser"> Collapse All </a></li>
+				<li><a href="#" class="bm_expander"> Expand All </a></li>
+				<li><a href="#" class="night_mode"> Night Mode </a></li>
+				<li><a href="#" class="bright_mode"> Bright Mode </a></li>
+			</ul>
+		</div>
 
 		<div class="container-fluid">
 			<div class="row">
@@ -45,7 +57,7 @@
 							</br>
 							<div class="category-container">
 								<div class="progress">
-								    <div class="progress-bar progress-bar-striped active progress_style_edit" style="background-color: {{ item.0.progress_bar_color }};">
+								    <div class="progress-bar progress-bar-striped active progress_style_edit"  num="{{ item.0.id }}" style="background-color: {{ item.0.progress_bar_color }};">
 										<a href="/b/category_up/{{ item.0.id }}" class="cat_glyph_style"> <span class="glyphicon glyphicon-arrow-up"></span> </a>
 										<a href="/b/category_down/{{ item.0.id }}" class="cat_glyph_style"> <span class="glyphicon glyphicon-arrow-down"></span> </a>
 										<a href="/b/category_left/{{ item.0.id }}" class="cat_glyph_style"> <span class="glyphicon glyphicon-arrow-left"></span> </a>
@@ -57,17 +69,18 @@
 								</div>
 
 								{% for bookmark in item.1 %}
-									<span id="{{ bookmark.id }}" class="bm_up bm_style_edit glyphicon glyphicon-arrow-up"></span>
-									<span id="{{ bookmark.id }}" class="bm_down bm_style_edit glyphicon glyphicon-arrow-down"></span>
-									<span id="{{ bookmark.id }}" class="bm_random bm_style_edit glyphicon glyphicon-random"></span>
-									<span id="{{ bookmark.id }}" class="bm_del bm_style_edit glyphicon glyphicon-trash"></span>
+								<div class="bm_style cat_num_{{ item.0.id }}">
+									<span id="{{ bookmark.id }}" class="bm_up bm_style_glyphicon glyphicon glyphicon-arrow-up"></span>
+									<span id="{{ bookmark.id }}" class="bm_down bm_style_glyphicon glyphicon glyphicon-arrow-down"></span>
+									<span id="{{ bookmark.id }}" class="bm_random bm_style_glyphicon glyphicon glyphicon-random"></span>
+									<span id="{{ bookmark.id }}" class="bm_del bm_style_glyphicon glyphicon glyphicon-trash"></span>
 									<a href="{{ bookmark.link }}">
 										{% if bookmark.glyphicon  %}
 											<span class="glyphicon glyphicon-{{ bookmark.glyphicon }}"></span>
 										{% endif %}
 										{{ bookmark.name }}
 									</a>
-									</br>
+								</div>
 								{% endfor %}
 							</div>
 						{% endfor %}
