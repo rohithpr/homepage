@@ -67,7 +67,7 @@
 
 								{% for bookmark in item.1 %}
 									<a href="{{ bookmark.link }}">
-										<div class="bm_style cat_num_{{ item.0.id }}">
+										<div class="bm_style_home cat_num_{{ item.0.id }}">
 										{% if bookmark.glyphicon  %}
 											<span class="glyphicon glyphicon-{{ bookmark.glyphicon }}"></span>
 										{% endif %}
@@ -86,11 +86,11 @@
 		$(document).ready( function(){
 
 			$('.bm_collapser').click( function(){
-				$('.bm_style').hide();
+				$('.bm_style_home').hide();
 			});
 
 			$('.bm_expander').click( function(){
-				$('.bm_style').show();
+				$('.bm_style_home').show();
 			});
 
 			$('.progress_style_home').click( function(){
@@ -104,12 +104,12 @@
 
 			$('.night_mode').click( function(){
 				$('body').css('background-color', '#1c1c1c');
-				$('.bm_style').css('color', '#ffb90f');
+				$('.bm_style_home').css('color', '#ffb90f');
 			});
 
 			$('.bright_mode').click( function(){
 				$('body').css('background-color', 'rgba(238,173,14, 0.1)');
-				$('.bm_style').css('color', '');
+				$('.bm_style_home').css('color', '');
 			});
 
 			$('.glyphicon').hover( function(){

@@ -57,10 +57,10 @@
 								</div>
 
 								{% for bookmark in item.1 %}
-									<span id="{{ bookmark.id }}" class="bm_up bm_style glyphicon glyphicon-arrow-up"></span>
-									<span id="{{ bookmark.id }}" class="bm_down bm_style glyphicon glyphicon-arrow-down"></span>
-									<span id="{{ bookmark.id }}" class="bm_random bm_style glyphicon glyphicon-random"></span>
-									<span id="{{ bookmark.id }}" class="bm_del bm_style glyphicon glyphicon-trash"></span>
+									<span id="{{ bookmark.id }}" class="bm_up bm_style_edit glyphicon glyphicon-arrow-up"></span>
+									<span id="{{ bookmark.id }}" class="bm_down bm_style_edit glyphicon glyphicon-arrow-down"></span>
+									<span id="{{ bookmark.id }}" class="bm_random bm_style_edit glyphicon glyphicon-random"></span>
+									<span id="{{ bookmark.id }}" class="bm_del bm_style_edit glyphicon glyphicon-trash"></span>
 									<a href="{{ bookmark.link }}">
 										{% if bookmark.glyphicon  %}
 											<span class="glyphicon glyphicon-{{ bookmark.glyphicon }}"></span>
