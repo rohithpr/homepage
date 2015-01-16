@@ -10,51 +10,8 @@
 		</title>
 	</head>
 	<style>
-		a:hover {
-			text-decoration: none;
-		}
 
-		.navbar {
-			background-color: #008b8b;
-			border: 1px solid #008b8b;
-		}
-
-		.navbar .nav > li > a {
-		    color:  #000000;
-		    font-size: 1.2em;
-		}
-
-		.navbar-header > a.navbar-brand {
-			color: #000000;
-		}
-
-		.navbar .nav > li > a:hover {
-		    color:  #ffffff;
-		    background-color: #eead0e;
-		}
-
-		.navbar-header > a.navbar-brand:hover {
-			color: #000000;
-		}
-
-		.nav .active a{
-			background-color: #eead0e!important;
-		}
-
-		.progress_style{
-			 width: 100%;
-			 font-size: 1em;
-		}
-		.bm_style {
-			text-align: center;
-		}
-		.bm_style:hover {
-			background-color: #8b8386;
-			color: #ffffff;
-		}
-		.category-container:hover{
-			background-color: rgba(139,131,134, 0.15);
-		}
+	{% include "style.html" %}
 
 	</style>
 	<!-- <body style="background-color:rgba(255,255,224, 0.09)"> --> <!-- Pick a BG.. -->
@@ -90,6 +47,8 @@
 			<ul class="nav nav-pills">
 				<li><a href="#" class="bm_collapser"> Collapse All </a></li>
 				<li><a href="#" class="bm_expander"> Expand All </a></li>
+				<li><a href="#" class="night_mode"> Night Mode </a></li>
+				<li><a href="#" class="bright_mode"> Bright Mode </a></li>
 			</ul>
 		</div>
 
@@ -101,8 +60,8 @@
 							</br>
 							<div class="category-container">
 								<div class="progress">
-								    <div class="progress-bar progress-bar-striped active progress_style" num="{{ item.0.id }}" style="background-color: {{ item.0.progress_bar_color }};">
-										<span style="color:#ffffff">{{ item.0.name }}</span>
+								    <div class="progress-bar progress-bar-striped active progress_style_home" num="{{ item.0.id }}" style="background-color: {{ item.0.progress_bar_color }};">
+										<span style="background:#ffffff; color:#000000">{{ item.0.name }}</span>
 									</div>
 								</div>
 
@@ -134,37 +93,27 @@
 				$('.bm_style').show();
 			});
 
-			$('.progress_style').click( function(){
+			$('.progress_style_home').click( function(){
 				var cat_num = '.cat_num_' + $(this).attr('num');
 				$(cat_num).toggle();
 			});
 
-			$('.progress_style').hover( function(){
+			$('.progress_style_home').hover( function(){
 				$(this).css('cursor', 'pointer');
+			});
+
+			$('.night_mode').click( function(){
+				$('body').css('background-color', '#1c1c1c');
+				$('.bm_style').css('color', '#ffb90f');
+			});
+
+			$('.bright_mode').click( function(){
+				$('body').css('background-color', 'rgba(238,173,14, 0.1)');
+				$('.bm_style').css('color', '');
 			});
 
 			$('.glyphicon').hover( function(){
 				$(this).css('cursor', 'pointer');
-			});
-
-			$('.bm_del').dblclick( function(){
-				window.location.href='/b/trash_bookmark/' + this.id;
-			});
-
-			$('.bm_up').click( function(){
-				window.location.href='/b/bookmark_up/' + this.id;
-			});
-
-			$('.bm_down').click( function(){
-				window.location.href='/b/bookmark_down/' + this.id;
-			});
-
-			$('.bm_random').click( function(){
-				window.location.href='/b/random_glyphicon/' + this.id;
-			});
-
-			$('.cat_del').dblclick( function(){
-				window.location.href='/b/delete_category/' + this.id;
 			});
 		});
 	</script>
