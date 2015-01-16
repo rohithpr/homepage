@@ -91,35 +91,11 @@
                 </div>
             </div>
         </div>
-        <script type="text/javascript">
-            $(document).ready( function(){
-                $('.signup').hide();
-
-                $('.old_user').click( function(){
-                    $login = $('.login');
-                    $login.toggle();
-                    var username = $login.find('input[name=username]').val();
-                    var password = $login.find('input[name=password]').val();
-
-                    $signup = $('.signup');
-                    $signup.toggle();
-                    $signup.find('input[name=username]').val(username);
-                    $signup.find('input[name=password]').val(password);
-                    $('input[name=repassword]').focus();
-                });
-
-                $('.new_user').click( function(){
-                    $signup = $('.signup');
-                    $signup.toggle();
-                    var username = $signup.find('input[name=username]').val();
-                    var password = $signup.find('input[name=password]').val();
-
-                    $login = $('.login');
-                    $login.toggle();
-                    $login.find('input[name=username]').val(username);
-                    $login.find('input[name=password]').val(password);
-                });
-            });
-        </script>
     </body>
+    <script type="text/javascript">
+
+    {% include "jQuery.html" %}
+    $('.signup').hide();
+
+    </script>
 </html>

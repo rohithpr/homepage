@@ -82,38 +82,8 @@
 		</div>
 	</body>
 	<script>
-		$(document).ready( function(){
 
-			$('.bm_collapser').click( function(){
-				$('.bm_style_home').hide();
-			});
+	{% include "jQuery.html" %}
 
-			$('.bm_expander').click( function(){
-				$('.bm_style_home').show();
-			});
-
-			$('.progress_style_home').click( function(){
-				var cat_num = '.cat_num_' + $(this).attr('num');
-				$(cat_num).toggle();
-			});
-
-			$('.progress_style_home').hover( function(){
-				$(this).css('cursor', 'pointer');
-			});
-
-			$('.night_mode').click( function(){
-				$('body').css('background-color', '#1c1c1c');
-				$('.bm_style_home').css('color', '#ffb90f');
-			});
-
-			$('.bright_mode').click( function(){
-				$('body').css('background-color', 'rgba(238,173,14, 0.1)');
-				$('.bm_style_home').css('color', '');
-			});
-
-			$('.glyphicon').hover( function(){
-				$(this).css('cursor', 'pointer');
-			});
-		});
 	</script>
 </html>

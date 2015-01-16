@@ -78,31 +78,9 @@
 		</div>
 	</body>
 	<script>
-		$(document).ready( function(){
-			$('.glyphicon').hover( function(){
-				$(this).css('cursor', 'pointer');
-			});
 
-			$('.bm_del').dblclick( function(){
-				window.location.href='/b/trash_bookmark/' + this.id;
-			});
+	{% include "jQuery.html" %}
 
-			$('.bm_up').click( function(){
-				window.location.href='/b/bookmark_up/' + this.id;
-			});
-
-			$('.bm_down').click( function(){
-				window.location.href='/b/bookmark_down/' + this.id;
-			});
-
-			$('.bm_random').click( function(){
-				window.location.href='/b/random_glyphicon/' + this.id;
-			});
-
-			$('.cat_del').dblclick( function(){
-				window.location.href='/b/delete_category/' + this.id;
-			});
-		});
 	</script>
 </html>
 

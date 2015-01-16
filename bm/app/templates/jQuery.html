@@ -1,0 +1,78 @@
+        $(document).ready( function(){
+
+            $('.old_user').click( function(){
+                $login = $('.login');
+                $login.toggle();
+                var username = $login.find('input[name=username]').val();
+                var password = $login.find('input[name=password]').val();
+
+                $signup = $('.signup');
+                $signup.toggle();
+                $signup.find('input[name=username]').val(username);
+                $signup.find('input[name=password]').val(password);
+                $('input[name=repassword]').focus();
+            });
+
+            $('.new_user').click( function(){
+                $signup = $('.signup');
+                $signup.toggle();
+                var username = $signup.find('input[name=username]').val();
+                var password = $signup.find('input[name=password]').val();
+
+                $login = $('.login');
+                $login.toggle();
+                $login.find('input[name=username]').val(username);
+                $login.find('input[name=password]').val(password);
+            });
+
+            $('.bm_collapser').click( function(){
+                $('.bm_style_home').hide();
+            });
+
+            $('.bm_expander').click( function(){
+                $('.bm_style_home').show();
+            });
+
+            $('.progress_style_home').click( function(){
+                var cat_num = '.cat_num_' + $(this).attr('num');
+                $(cat_num).toggle();
+            });
+
+            $('.progress_style_home').hover( function(){
+                $(this).css('cursor', 'pointer');
+            });
+
+            $('.night_mode').click( function(){
+                $('body').css('background-color', '#1c1c1c');
+                $('.bm_style_home').css('color', '#ffb90f');
+            });
+
+            $('.bright_mode').click( function(){
+                $('body').css('background-color', 'rgba(238,173,14, 0.1)');
+                $('.bm_style_home').css('color', '');
+            });
+
+            $('.glyphicon').hover( function(){
+                $(this).css('cursor', 'pointer');
+            });
+
+            $('.bm_del').dblclick( function(){
+                window.location.href='/b/trash_bookmark/' + this.id;
+            });
+
+            $('.bm_up').click( function(){
+                window.location.href='/b/bookmark_up/' + this.id;
+            });
+
+            $('.bm_down').click( function(){
+                window.location.href='/b/bookmark_down/' + this.id;
+            });
+
+            $('.bm_random').click( function(){
+                window.location.href='/b/random_glyphicon/' + this.id;
+            });
+
+            $('.cat_del').dblclick( function(){
+                window.location.href='/b/delete_category/' + this.id;
+            });
+        });
