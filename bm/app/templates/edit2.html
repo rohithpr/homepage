@@ -16,6 +16,22 @@
 			text-align: left;
 		}
 
+		.btn {
+			height: 20px;
+			font-size: 0.75em;
+			padding-top: 1.5px;
+			margin-top: 5px;
+		}
+
+		.add_bm_style {
+			height: 20px;
+		}
+
+		.form-control {
+			margin-bottom: -10px;
+			margin-top: 5px;
+		}
+
 	</style>
 	<body>
 		<nav class="navbar navbar-inverse navbar-fixed-top" style="border-radius:0px;">
@@ -81,7 +97,27 @@
 										{{ bookmark.name }}
 									</a>
 								</div>
-								{% endfor %}
+									{% endfor %}
+								<div>
+									<form class="form-horizontal" method="post" action="/b/verify/">
+	                        			{% csrf_token %}
+	                        			<div class="form-group">
+	                            			<div class="col-sm-12">
+	                                			<input type="text" class="form-control add_bm_style" name="Bookmark name" placeholder="Bookmark name"/>
+	                            			</div>
+	                        			</div>
+	                        			<div class="form-group">
+	                            			<div class="col-sm-8">
+	                                			<input type="text" class="form-control add_bm_style" name="link" placeholder="Link">
+	                            			</div>
+	                       					<!--  </div>
+	                        				<div class="form-group"> -->
+	                            			<div class="col-sm-4">
+	                           	    			<input type="submit" value="Add" class="btn"/>
+	                            			</div>
+	                        			</div>
+	                    			</form>
+								</div>
 							</div>
 						{% endfor %}
 					</div>
