@@ -198,6 +198,13 @@ def delete_bookmark(request, bookmark_id): # Deletes from trash, no more recover
 	return HttpResponseRedirect('/b/trash')
 
 @login_required(login_url='/b/login')
+def clear_trash(request):
+	current = Trash.objects.all()
+	for idx in current:
+		idx.delete()
+	return HttpResponseRedirect('/')
+
+@login_required(login_url='/b/login')
 def delete_category(request, category_id): # No recovery.
 	current = Category.objects.get(id=category_id)
 	below = Category.objects.filter(user=request.user).filter(column_number=current.column_number)

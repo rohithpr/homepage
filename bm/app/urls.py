@@ -24,6 +24,7 @@ urlpatterns = patterns('',
 	url('^trash_bookmark/(?P<bookmark_id>\d+)', views.trash_bookmark),
 	url('^delete_bookmark/(?P<bookmark_id>\d+)', views.delete_bookmark),
 	url('^restore_bookmark/(?P<bookmark_id>\d+)', views.restore_bookmark),
+	url('^clear_trash', views.clear_trash),
 	url('^delete_category/(?P<category_id>\d+)', views.delete_category),
 
 	url('^add_ten_random_bookmarks/', views.add_ten_random_bookmarks),

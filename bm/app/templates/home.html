@@ -1,21 +1,89 @@
-<!-- Put this stuff into a navbar-inverse. 
-Convert the button to a normal link or whatever works, 
-just send it to the link "/b/logout/" -->
-Hello {{ user }}
-<a href="/">Home</a>
-<a href="/b/edit">Edit</a>
-<a href="/b/logout">Logout</a>
+<html>
+	<head>
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-</br>
-<!-- container and row -->
-{% for col in columns %}
-	<!-- Define column here. Just once is enough. -->
-	{% for item in col %}
-		</br></br>Category Name: {{ item.0.name }}
-		{% for bookmark in item.1 %}
-			</br><a href="{{ bookmark.link }}">{{ bookmark.name }}</a>
-		{% endfor %}
-	{% endfor %}
-	</br></br> END COLUMN </br></br> 
-{% endfor %}
+		<title>
+			Bookmarks | Home
+		</title>
+	</head>
+	<style>
 
+	{% include "style.html" %}
+
+	</style>
+	<body>
+		<nav class="navbar navbar-inverse navbar-fixed-top" style="border-radius:0px;">
+			<div class="container-fluid">
+				<div class="navbar-header">
+			        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+			            <span class="icon-bar"></span>
+			            <span class="icon-bar"></span>
+			            <span class="icon-bar"></span>
+			        </button>
+					<a class="navbar-brand">Bookmarks</a>
+				</div>
+				<div>
+					<div class="collapse navbar-collapse" id="myNavbar">
+						<ul class="nav navbar-nav">
+							<li class="active"><a href="#">Home: {{ user }}</a></li>
+						</ul>
+						<ul class="nav navbar-nav navbar-right">
+							<li><a href="/b/edit">Edit</a></li>
+							<li><a href="/b/trash">Trash</a></li>
+							<li><a href="/b/logout">Logout</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</nav>
+		</br>
+		</br>
+		</br>
+		<div class="container">
+			<ul class="nav nav-pills">
+				<li><a href="#" class="bm_collapser"> Collapse All </a></li>
+				<li><a href="#" class="bm_expander"> Expand All </a></li>
+				<li><a href="#" class="night_mode"> Night Mode </a></li>
+				<li><a href="#" class="bright_mode"> Bright Mode </a></li>
+			</ul>
+		</div>
+
+		<div class="container-fluid">
+			<div class="row">
+				{% for col in columns %}
+					<div class="col-sm-2">
+						{% for item in col %}
+							</br>
+							<div class="category-container">
+								<div class="progress">
+								    <div class="progress-bar progress-bar-striped active progress_style_home" num="{{ item.0.id }}" style="background-color: {{ item.0.progress_bar_color }};">
+										<span style="background:#ffffff; color:#000000">{{ item.0.name }}</span>
+									</div>
+								</div>
+
+								{% for bookmark in item.1 %}
+									<a href="{{ bookmark.link }}">
+										<div class="bm_style cat_num_{{ item.0.id }}">
+											{% if bookmark.glyphicon  %}
+												<span class="glyphicon glyphicon-{{ bookmark.glyphicon }}"></span>
+											{% endif %}
+											{{ bookmark.name }}
+										</div>
+									</a>
+								{% endfor %}
+							</div>
+						{% endfor %}
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</body>
+	<script>
+
+	{% include "jQuery.html" %}
+
+	</script>
+</html>
