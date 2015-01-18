@@ -1,0 +1,137 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title>
+			Bookmarks | Edit
+		</title>
+	</head>
+	<style>
+
+		{% include "style.html" %}
+		.bm_style {
+			text-align: left;
+		}
+
+		.btn_small {
+			height: 30px;
+			padding-top: 1.5px;
+			margin-top: 1px;
+		}
+
+	</style>
+	<body>
+		<nav class="navbar navbar-inverse navbar-fixed-top" style="border-radius:0px;">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand">Bookmarks</a>
+				</div>
+				<div>
+					<ul class="nav navbar-nav">
+						<li><a href="/">Home: {{ user }}</a></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="/b/add_ten_random_bookmarks/">Add ten bookmarks</a></li>
+						<li><a href="/b/add_five_random_categories/">Add five categories</a></li>
+						<li><a href="/b/edit">Edit</a></li>
+						<li><a href="/b/trash">Trash</a></li>
+						<li><a href="/b/logout">Logout</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		</br>
+		</br>
+		</br>
+		<div class="container">
+			<ul class="nav nav-pills">
+				<li><a href="#" class="bm_collapser"> Collapse All </a></li>
+				<li><a href="#" class="bm_expander"> Expand All </a></li>
+				<li><a href="#" class="night_mode"> Night Mode </a></li>
+				<li><a href="#" class="bright_mode"> Bright Mode </a></li>
+			</ul>
+		</div>
+
+		<div class="container-fluid">
+			<div class="row">
+				{% for col in columns %}
+					<div class="col-sm-2">
+						{% for item in col %}
+							</br>
+							<div class="category-container">
+								<div class="progress">
+								    <div class="progress-bar progress-bar-striped active progress_style_edit"  num="{{ item.0.id }}" style="background-color: {{ item.0.progress_bar_color }};">
+										<a href="/b/category_up/{{ item.0.id }}" class="cat_glyph_style"> <span class="glyphicon glyphicon-arrow-up"></span> </a>
+										<a href="/b/category_down/{{ item.0.id }}" class="cat_glyph_style"> <span class="glyphicon glyphicon-arrow-down"></span> </a>
+										<a href="/b/category_left/{{ item.0.id }}" class="cat_glyph_style"> <span class="glyphicon glyphicon-arrow-left"></span> </a>
+										<a href="/b/category_right/{{ item.0.id }}" class="cat_glyph_style"> <span class="glyphicon glyphicon-arrow-right"></span> </a>
+										<a href="/b/random_color/{{ item.0.id }}" class="cat_glyph_style"> <span class="glyphicon glyphicon-random"></span> </a>
+										<span id="{{ item.0.id }}" class="cat_del cat_glyph_style glyphicon glyphicon-trash"></span>
+										<span style="color:#ffffff">{{ item.0.name }}</span>
+									</div>
+								</div>
+
+								<div class="category-sub-container" id="cat_num_{{ item.0.id }}">
+									{% for bookmark in item.1 %}
+									<div class="bm_style">
+										<span id="{{ bookmark.id }}" class="bm_up bm_style_glyphicon glyphicon glyphicon-arrow-up"></span>
+										<span id="{{ bookmark.id }}" class="bm_down bm_style_glyphicon glyphicon glyphicon-arrow-down"></span>
+										<span id="{{ bookmark.id }}" class="bm_random bm_style_glyphicon glyphicon glyphicon-random"></span>
+										<span id="{{ bookmark.id }}" class="bm_del bm_style_glyphicon glyphicon glyphicon-trash"></span>
+										<a href="{{ bookmark.link }}">
+											{% if bookmark.glyphicon  %}
+												<span class="glyphicon glyphicon-{{ bookmark.glyphicon }}"></span>
+											{% endif %}
+											{{ bookmark.name }}
+										</a>
+									</div>
+									{% endfor %}
+									<div>
+										<div class="show_form_add_bookmark" style="font-size: 1.5em; text-align: center;" num="{{ item.0.id }}">
+											<span class="glyphicon glyphicon-plus bm_style_glyphicon"></span>
+										</div>
+										<div class="form_add_bookmark">
+											<form class="form-horizontal" method="post" action="/b/add_bookmark/{{ item.0.id }}">
+			                        			{% csrf_token %}
+			                        			<div class="form-group">
+			                            			<div class="col-sm-12">
+			                                			<input type="text" class="form-control add_bm_style" name="name" placeholder="Bookmark name"/>
+			                            			</div>
+			                        			</div>
+			                        			<div class="form-group">
+			                            			<div class="col-sm-8">
+			                                			<input type="text" class="form-control add_bm_style" name="link" placeholder="Link">
+			                            			</div>
+			                            			<div class="col-sm-4">
+			                           	    			<input type="submit" value="Add" class="btn btn_small"/>
+			                            			</div>
+			                        			</div>
+			                    			</form>
+										</div>
+									</div>
+								</div>
+							</div>
+						{% endfor %}
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</body>
+	<script>
+
+	{% include "jQuery.html" %}
+	$(".form_add_bookmark").hide();
+
+	$(".show_form_add_bookmark").click( function(){
+		$(".form_add_bookmark").hide();
+		$(".show_form_add_bookmark").show();
+		var $parent = $(this).parent();
+		$(".form_add_bookmark", $parent).show();
+		$(this).hide();
+	});
+	</script>
+</html>
+
