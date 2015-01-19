@@ -16,20 +16,10 @@
 			text-align: left;
 		}
 
-		.btn {
-			height: 20px;
-			font-size: 0.75em;
+		.btn_small {
+			height: 30px;
 			padding-top: 1.5px;
-			margin-top: 5px;
-		}
-
-		.add_bm_style {
-			height: 20px;
-		}
-
-		.form-control {
-			margin-bottom: -10px;
-			margin-top: 5px;
+			margin-top: 1px;
 		}
 
 	</style>
@@ -186,39 +176,44 @@
 									</div>
 								</div>
 
-								{% for bookmark in item.1 %}
-								<div class="bm_style cat_num_{{ item.0.id }}">
-									<span id="{{ bookmark.id }}" class="bm_up bm_style_glyphicon glyphicon glyphicon-arrow-up"></span>
-									<span id="{{ bookmark.id }}" class="bm_down bm_style_glyphicon glyphicon glyphicon-arrow-down"></span>
-									<span id="{{ bookmark.id }}" class="bm_random bm_style_glyphicon glyphicon glyphicon-random"></span>
-									<span id="{{ bookmark.id }}" class="bm_del bm_style_glyphicon glyphicon glyphicon-trash"></span>
-									<a href="{{ bookmark.link }}">
-										{% if bookmark.glyphicon  %}
-											<span class="glyphicon glyphicon-{{ bookmark.glyphicon }}"></span>
-										{% endif %}
-										{{ bookmark.name }}
-									</a>
-								</div>
+								<div class="category-sub-container" id="cat_num_{{ item.0.id }}">
+									{% for bookmark in item.1 %}
+									<div class="bm_style">
+										<span id="{{ bookmark.id }}" class="bm_up bm_style_glyphicon glyphicon glyphicon-arrow-up"></span>
+										<span id="{{ bookmark.id }}" class="bm_down bm_style_glyphicon glyphicon glyphicon-arrow-down"></span>
+										<span id="{{ bookmark.id }}" class="bm_random bm_style_glyphicon glyphicon glyphicon-random"></span>
+										<span id="{{ bookmark.id }}" class="bm_del bm_style_glyphicon glyphicon glyphicon-trash"></span>
+										<a href="{{ bookmark.link }}">
+											{% if bookmark.glyphicon  %}
+												<span class="glyphicon glyphicon-{{ bookmark.glyphicon }}"></span>
+											{% endif %}
+											{{ bookmark.name }}
+										</a>
+									</div>
 									{% endfor %}
-								<div>
-									<form class="form-horizontal" method="post" action="/b/verify/">
-	                        			{% csrf_token %}
-	                        			<div class="form-group">
-	                            			<div class="col-sm-12">
-	                                			<input type="text" class="form-control add_bm_style" name="Bookmark name" placeholder="Bookmark name"/>
-	                            			</div>
-	                        			</div>
-	                        			<div class="form-group">
-	                            			<div class="col-sm-8">
-	                                			<input type="text" class="form-control add_bm_style" name="link" placeholder="Link">
-	                            			</div>
-	                       					<!--  </div>
-	                        				<div class="form-group"> -->
-	                            			<div class="col-sm-4">
-	                           	    			<input type="submit" value="Add" class="btn"/>
-	                            			</div>
-	                        			</div>
-	                    			</form>
+									<div>
+										<div class="show_form_add_bookmark" style="font-size: 1.5em; text-align: center;" num="{{ item.0.id }}">
+											<span class="glyphicon glyphicon-plus bm_style_glyphicon"></span>
+										</div>
+										<div class="form_add_bookmark">
+											<form class="form-horizontal" method="post" action="/b/add_bookmark/{{ item.0.id }}">
+			                        			{% csrf_token %}
+			                        			<div class="form-group">
+			                            			<div class="col-sm-12">
+			                                			<input type="text" class="form-control add_bm_style" name="name" placeholder="Bookmark name"/>
+			                            			</div>
+			                        			</div>
+			                        			<div class="form-group">
+			                            			<div class="col-sm-8">
+			                                			<input type="text" class="form-control add_bm_style" name="link" placeholder="Link">
+			                            			</div>
+			                            			<div class="col-sm-4">
+			                           	    			<input type="submit" value="Add" class="btn btn_small"/>
+			                            			</div>
+			                        			</div>
+			                    			</form>
+										</div>
+									</div>
 								</div>
 							</div>
 						{% endfor %}
@@ -230,6 +225,14 @@
 	<script>
 
 	{% include "jQuery.html" %}
+	$(".form_add_bookmark").hide();
 
+	$(".show_form_add_bookmark").click( function(){
+		$(".form_add_bookmark").hide();
+		$(".show_form_add_bookmark").show();
+		var $parent = $(this).parent();
+		$(".form_add_bookmark", $parent).show();
+		$(this).hide();
+	});
 	</script>
 </html>
