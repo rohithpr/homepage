@@ -28,21 +28,24 @@
 
             // Nav-pill controlls.
             $('.bm_collapser').click( function(){
-                $('.bm_style').hide();
+                $('.category-sub-container').hide();
             });
 
             $('.bm_expander').click( function(){
-                $('.bm_style').show();
+                $('.category-sub-container').show();
             });
 
             // Toggle bookmark visibility.
             $('.progress_style_home').click( function(){
-                var cat_num = '.cat_num_' + $(this).attr('num');
+                var cat_num = '#cat_num_' + $(this).attr('num');
                 $(cat_num).toggle();
             });
 
             $('.progress_style_edit').click( function(){
-                var cat_num = '.cat_num_' + $(this).attr('num');
+                //if ( e.target !== this) // If the click was on a glyphicon
+                //    return;
+                // Find a fix from http://stackoverflow.com/questions/9183381/how-to-have-click-event-only-fire-on-parent-div-not-children
+                var cat_num = '#cat_num_' + $(this).attr('num');
                 $(cat_num).toggle();
             });
 
