@@ -1,0 +1,60 @@
+<div class="container bookmark_big_edit_form login" style="border: 1px solid grey;">
+	<div style="text-align: right;">
+		<span class="glyphicon glyphicon-remove bm_style_glyphicon hide_big_edit_form"></span>
+	</div>
+	<form class="form-horizontal" action="/b/edit_bookmark/">
+		<div class="form-group">
+			<label class="control-label col-sm-2" for="ID">ID:</label>
+			<div class="col-sm-3">
+				<input type="text" class="form-control" name="ID" disabled/>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-2" for="name">Bookmark Name:</label>
+		 	<div class="col-sm-3">
+				<input type="text" class="form-control" name="bookmark_name" placeholder="Enter Bookmark Name" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-2" for="category">Category:</label>
+			<div class="col-sm-3"> 
+				<input type="text" class="form-control" name="category" placeholder="Enter category" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-2" for="link">link:</label>
+			<div class="col-sm-3"> 
+				<input type="text" class="form-control" name="link" placeholder="Enter link" />
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="control-label col-sm-2" for="pwd">Glyphicon:</label>
+			<div class="col-sm-3"> 
+				<input type="text" class="form-control" name="glyphicon" placeholder="Enter Glyphicon name" />
+			</div>
+			<div class="input-append btn-group">
+				<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
+					<span class="caret"></span>
+				</a>
+				<ul class="dropdown-menu" style="max-height: 150px; overflow: hidden; overflow-y: auto;">
+					{% for glyphicon in glyphicons %}
+						<li class="dropdown_glyphicon"><a>{{ glyphicon }}</a></li>
+					{% endfor %}				   
+				</ul>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="control-label col-sm-2" for="pwd">Row No:</label>
+			<div class="col-sm-3"> 
+				<input type="number" class="form-control" name="row_number" placeholder="Enter row no" />
+			</div>
+		</div>
+		<div class="form-group"> 
+			<div class="col-sm-offset-2 col-sm-3">
+				<button type="submit" class="btn btn-default">Done</button>
+			</div>
+		</div>
+	</form>
+</div>

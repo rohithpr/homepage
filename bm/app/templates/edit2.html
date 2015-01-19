@@ -27,205 +27,45 @@
 		<nav class="navbar navbar-inverse navbar-fixed-top" style="border-radius:0px;">
 			<div class="container-fluid">
 				<div class="navbar-header">
+			        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+			            <span class="icon-bar"></span>
+			            <span class="icon-bar"></span>
+			            <span class="icon-bar"></span>
+			        </button>
 					<a class="navbar-brand">Bookmarks</a>
 				</div>
 				<div>
-					<ul class="nav navbar-nav">
-						<li><a href="/">Home: {{ user }}</a></li>
-					</ul>
-					<ul class="nav navbar-nav navbar-right">
-						<li><a href="/b/add_ten_random_bookmarks/">Add ten bookmarks</a></li>
-						<li><a href="/b/add_five_random_categories/">Add five categories</a></li>
-						<li><a href="/b/edit">Edit</a></li>
-						<li><a href="/b/trash">Trash</a></li>
-						<li><a href="/b/logout">Logout</a></li>
-					</ul>
+					<div class="collapse navbar-collapse" id="myNavbar">
+						<ul class="nav navbar-nav">
+							<li><a href="/">Home: {{ user }}</a></li>
+						</ul>
+						<ul class="nav navbar-nav navbar-right">
+							<li><a href="/b/add_ten_random_bookmarks/">Add ten bookmarks</a></li>
+							<li><a href="/b/add_five_random_categories/">Add five categories</a></li>
+							<li><a href="/b/edit">Edit</a></li>
+							<li><a href="/b/trash">Trash</a></li>
+							<li><a href="/b/logout">Logout</a></li>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</nav>
-		</br>
-		</br>
-		</br>
-		<div class="container">
-			<ul class="nav nav-pills">
-				<li><a href="#" class="bm_collapser"> Collapse All </a></li>
-				<li><a href="#" class="bm_expander"> Expand All </a></li>
-				<li><a href="#" class="night_mode"> Night Mode </a></li>
-				<li><a href="#" class="bright_mode"> Bright Mode </a></li>
-			</ul>
-		</div>
-		<div>
-		<form class="form-horizontal" role="form">
-  			<div class="form-group">
-   			<label class="control-label col-sm-2" for="email">Cat Name:</label>
-   			 	<div class="col-sm-4">
-      			<input type="text" class="form-control" id="text" placeholder="Enter Cat Name">
-   				</div>
-  			</div>
+		
+		{% include "pills.html" %}
 
-				
- 			<div class="form-group">
-   			<label class="control-label col-sm-2" for="pwd">Color:</label>
-   				<div class="col-sm-3"> 
-     			<input type="text" class="form-control" id="text" placeholder="Enter color">
-   				</div>
-   				<div class="input-append btn-group">
-				    <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
-				        <span class="caret"></span>
-				    </a>
-				    <ul class="dropdown-menu">
-				        <li><a href="#"><i class="icon-pencil"></i>Red</a></li>
-				        <li><a href="#"><i class="icon-trash"></i>Blue</a></li>
-				        <li><a href="#"><i class="icon-ban-circle"></i>Green</a></li>
-				       
-				    </ul>
-				</div>
-				
-  			</div>
+		{% include "edit2_category_edit_form.html" %}
 
+		{% include "edit2_bookmark_edit_form.html" %}
 
-			<div class="form-group">
-			<label class="control-label col-sm-2" for="pwd">To Row No:</label>
-   				<div class="col-sm-1"> 
-     			<input type="number" class="form-control" id="number" placeholder="Enter curr row no">
-   				</div>
+		{% include "edit2_content.html" %}
 
-   				<label class="control-label col-sm-1" for="pwd">To Col No:</label>
-   				<div class="col-sm-1"> 
-     			<input type="number" class="form-control" id="number" placeholder="Enter curr col no">
-   				</div>
-   			</div>
-
- 			<div class="form-group"> 
-   				<div class="col-sm-offset-2 col-sm-1">
-      			<button type="submit" class="btn btn-default">Done</button>
-    			</div>
-  			</div>
-		</form>
-	</div>
-
-		<div>
-		<form class="form-horizontal" role="form">
-  			<div class="form-group">
-   			<label class="control-label col-sm-2" for="name">Name:</label>
-   			 	<div class="col-sm-4">
-      			<input type="text" class="form-control" id="text" placeholder="Enter Bookmark  Name">
-   				</div>
-  			</div>
-				<div class="form-group">
-			<label class="control-label col-sm-2" for="category">Category:</label>
-   				<div class="col-sm-4"> 
-     			<input type="text" class="form-control" id="text" placeholder="Enter category">
-   				</div>
-   				</div>
-			<div class="form-group">
-   				<label class="control-label col-sm-2" for="link">link:</label>
-   				<div class="col-sm-4"> 
-     			<input type="text" class="form-control" id="link" placeholder="Enter link">
-   				</div>
-   			</div>
-			<div class="form-group">
-				<label class="control-label col-sm-2" for="pwd">Row No:</label>
-   				<div class="col-sm-1"> 
-     			<input type="number" class="form-control" id="number" placeholder="Enter row no">
-   				</div>
-
-   				<div class="form-group">
-   			<label class="control-label col-sm-1" for="pwd">Glyphicon:</label>
-   				<div class="col-sm-2"> 
-     			<input type="text" class="form-control" id="text" placeholder="Enter Glyphicon name">
-   				</div>
-   				<div class="input-append btn-group">
-				    <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
-				        <span class="caret"></span>
-				    </a>
-				    <ul class="dropdown-menu">
-				        <li><a href="#"><i class="icon-pencil"></i>glyphicons-glass</a></li>
-				        <li><a href="#"><i class="icon-trash"></i>glyphicons-link</a></li>
-				        <li><a href="#"><i class="icon-ban-circle"></i>glyphicons-bold</a></li>
-				       
-				    </ul>
-				</div>
-				
-  			</div>
-   			</div>
- 			<div class="form-group"> 
-   				<div class="col-sm-offset-2 col-sm-1">
-      			<button type="submit" class="btn btn-default">Done</button>
-    			</div>
-  			</div>
-		</form>
-	</div>
-
-		<div class="container-fluid">
-			<div class="row">
-				{% for col in columns %}
-					<div class="col-sm-2">
-						{% for item in col %}
-							</br>
-							<div class="category-container">
-								<div class="progress">
-								    <div class="progress-bar progress-bar-striped active progress_style_edit"  num="{{ item.0.id }}" style="background-color: {{ item.0.progress_bar_color }};">
-										<a href="/b/category_up/{{ item.0.id }}" class="cat_glyph_style"> <span class="glyphicon glyphicon-arrow-up"></span> </a>
-										<a href="/b/category_down/{{ item.0.id }}" class="cat_glyph_style"> <span class="glyphicon glyphicon-arrow-down"></span> </a>
-										<a href="/b/category_left/{{ item.0.id }}" class="cat_glyph_style"> <span class="glyphicon glyphicon-arrow-left"></span> </a>
-										<a href="/b/category_right/{{ item.0.id }}" class="cat_glyph_style"> <span class="glyphicon glyphicon-arrow-right"></span> </a>
-										<a href="/b/random_color/{{ item.0.id }}" class="cat_glyph_style"> <span class="glyphicon glyphicon-random"></span> </a>
-										<span id="{{ item.0.id }}" class="cat_del cat_glyph_style glyphicon glyphicon-trash"></span>
-										<span style="color:#ffffff">{{ item.0.name }}</span>
-									</div>
-								</div>
-
-								<div class="category-sub-container" id="cat_num_{{ item.0.id }}">
-									{% for bookmark in item.1 %}
-									<div class="bm_style">
-										<span id="{{ bookmark.id }}" class="bm_up bm_style_glyphicon glyphicon glyphicon-arrow-up"></span>
-										<span id="{{ bookmark.id }}" class="bm_down bm_style_glyphicon glyphicon glyphicon-arrow-down"></span>
-										<span id="{{ bookmark.id }}" class="bm_random bm_style_glyphicon glyphicon glyphicon-random"></span>
-										<span id="{{ bookmark.id }}" class="bm_del bm_style_glyphicon glyphicon glyphicon-trash"></span>
-										<a href="{{ bookmark.link }}">
-											{% if bookmark.glyphicon  %}
-												<span class="glyphicon glyphicon-{{ bookmark.glyphicon }}"></span>
-											{% endif %}
-											{{ bookmark.name }}
-										</a>
-									</div>
-									{% endfor %}
-									<div>
-										<div class="show_form_add_bookmark" style="font-size: 1.5em; text-align: center;" num="{{ item.0.id }}">
-											<span class="glyphicon glyphicon-plus bm_style_glyphicon"></span>
-										</div>
-										<div class="form_add_bookmark">
-											<form class="form-horizontal" method="post" action="/b/add_bookmark/{{ item.0.id }}">
-			                        			{% csrf_token %}
-			                        			<div class="form-group">
-			                            			<div class="col-sm-12">
-			                                			<input type="text" class="form-control add_bm_style" name="name" placeholder="Bookmark name"/>
-			                            			</div>
-			                        			</div>
-			                        			<div class="form-group">
-			                            			<div class="col-sm-8">
-			                                			<input type="text" class="form-control add_bm_style" name="link" placeholder="Link">
-			                            			</div>
-			                            			<div class="col-sm-4">
-			                           	    			<input type="submit" value="Add" class="btn btn_small"/>
-			                            			</div>
-			                        			</div>
-			                    			</form>
-										</div>
-									</div>
-								</div>
-							</div>
-						{% endfor %}
-					</div>
-				{% endfor %}
-			</div>
-		</div>
 	</body>
 	<script>
 
 	{% include "jQuery.html" %}
 	$(".form_add_bookmark").hide();
+	$(".bookmark_big_edit_form").hide();
+	$(".category_big_edit_form").hide();
 
 	$(".show_form_add_bookmark").click( function(){
 		$(".form_add_bookmark").hide();
@@ -234,5 +74,61 @@
 		$(".form_add_bookmark", $parent).show();
 		$(this).hide();
 	});
+
+	$(".hide_big_edit_form").click( function(){
+		$(".bookmark_big_edit_form").hide();
+		$(".category_big_edit_form").hide();
+	});
+
+	$(".dropdown_color").click( function(){
+		var color = $(this).text();
+		$("input[name=color]").val(color);
+	});
+
+	$(".dropdown_glyphicon").click( function(){
+		var glyphicon = $(this).text();
+		$("input[name=glyphicon]").val(glyphicon);
+	});
+
+	$(".cat_edit").click( function(){
+		$(".bookmark_big_edit_form").hide();
+		var current = $(this);
+		var name = current.attr("category-name");
+		var column_number = parseInt(current.attr("category-column-number"), 10);
+		var row_number = parseInt(current.attr("category-row-number"), 10);
+		var color = current.attr("category-color");
+		var id = current.attr("id");
+
+		var edit_form = $(".category_big_edit_form");
+		edit_form.find("input[name=category_name]").val(name);
+		edit_form.find("input[name=column_number]").val(column_number+1);
+		edit_form.find("input[name=row_number]").val(row_number+1);
+		edit_form.find("input[name=color]").val(color);
+		edit_form.find("input[name=ID]").val(id);
+
+		edit_form.show();
+	});
+
+	$(".bm_edit").click( function(){
+		$(".category_big_edit_form").hide();
+		var current = $(this);
+		var name = current.attr("bookmark-name");
+		var glyphicon = current.attr("bookmark-glyphicon");
+		var row_number = parseInt(current.attr("bookmark-row-number"), 10);
+		var link = current.attr("bookmark-link");
+		var category = current.attr("bookmark-category");
+		var id = current.attr("id");
+
+		var edit_form = $(".bookmark_big_edit_form");
+		edit_form.find("input[name=bookmark_name]").val(name);
+		edit_form.find("input[name=glyphicon]").val(glyphicon);
+		edit_form.find("input[name=row_number]").val(row_number+1);
+		edit_form.find("input[name=link]").val(link);
+		edit_form.find("input[name=category]").val(category);
+		edit_form.find("input[name=ID]").val(id);
+
+		edit_form.show();
+	});
+
 	</script>
 </html>

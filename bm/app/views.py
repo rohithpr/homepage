@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 
 from app.models import Category, Bookmark, Trash
 
+import app.constants as constants
 import random
 import string
 
@@ -35,17 +36,6 @@ def logout_page(request):
 ############################################################
 # HELPERS
 ############################################################
-
-GLYPHICONS = ['asterisk', 'plus', 'minus', 'euro', 'cloud', 'envelope', 'pencil', 'glass', 'music', 'search',
-			  'heart', 'star', 'star-empty', 'user', 'film', 'th-large', 'th', 'th-list', 'ok', 'remove',
-			  'off', 'cog', 'home', 'file', 'time', 'road', 'download', 'upload', 'inbox', 'play-circle', 
-			  'repeat', 'refresh', 'lock', 'flag', 'headphones', 'tag', 'tags', 'book', 'bookmark', 'print',
-			  'camera', 'facetime-video', 'picture', 'map-marker', 'tint', 'edit', 'play', 'pause', 'stop',
-			  'chevron-up', 'chevron-down', 'chevron-left', 'chevron-right', 'plus-sign', 'minus-sign', 'remove-sign',
-			  'ok-sign', 'question-sign', 'leaf', 'fire', 'plane', 'magnet', 'comment', 'shopping-cart', 'bullhorn',
-			  'bell', 'certificate', 'globe', 'wrench', 'filter', 'heart-empty', 'phone', 'pushpin', 'gbp', 'usd',
-			  'flash', 'record', 'send', 'cutlery', 'earphone', 'phone-alt', 'tower', 'tree-conifer', 'tree-deciduos', '',
-]
 
 def get_bookmarks(request):
 	categories = Category.objects.filter(user=request.user)
@@ -111,6 +101,8 @@ def edit_page(request):
 	context = {
 				'user': request.user,
 				'columns': get_bookmarks(request),
+				'colors': constants.COLORS,
+				'glyphicons': constants.GLYPHICONS,
 	}
 	return render(request, 'edit2.html', context)
 
@@ -304,7 +296,7 @@ def random_color(request, category_id):
 @login_required(login_url='/b/login')
 def random_glyphicon(request, bookmark_id):
 	current = Bookmark.objects.get(id=bookmark_id)
-	current.glyphicon = random.choice(GLYPHICONS)
+	current.glyphicon = random.choice(constants.GLYPHICONS)
 	current.save()
 	return HttpResponseRedirect('/b/edit')
 
@@ -318,7 +310,7 @@ def add_ten_random_bookmarks(request):
 		name = ''.join(raw_name[:6])
 		row_number = get_max_row_number(Bookmark.objects.filter(category=category)) + 1
 		if random.random() < 0.1:
-			glyphicon = random.choice(GLYPHICONS)
+			glyphicon = random.choice(constants.GLYPHICONS)
 		else:
 			glyphicon = ''
 		bookmark = Bookmark(category=category, name=name, link=name, row_number=row_number, glyphicon=glyphicon)
