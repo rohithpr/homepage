@@ -90,7 +90,9 @@
 		$("input[name=glyphicon]").val(glyphicon);
 	});
 
-	$(".cat_edit").click( function(){
+	$(".cat_edit").click( function(e){
+		e.stopPropagation();
+		
 		$(".bookmark_big_edit_form").hide();
 		var current = $(this);
 		var name = current.attr("category-name");

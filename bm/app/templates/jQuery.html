@@ -42,9 +42,8 @@
             });
 
             $('.progress_style_edit').click( function(){
-                //if ( e.target !== this) // If the click was on a glyphicon
-                //    return;
-                // Find a fix from http://stackoverflow.com/questions/9183381/how-to-have-click-event-only-fire-on-parent-div-not-children
+                if ($(e.target).hasClass('cat_glyph_style'))
+                    return;
                 var cat_num = '#cat_num_' + $(this).attr('num');
                 $(cat_num).toggle();
             });
