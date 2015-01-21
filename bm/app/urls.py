@@ -29,4 +29,5 @@ urlpatterns = patterns('',
 
 	url('^add_ten_random_bookmarks/', views.add_ten_random_bookmarks),
 	url('^add_five_random_categories/', views.add_five_random_categories),
+	url('^delete_existing_and_add_default_bookmarks', views.add_starter_bookmarks),
 	)
