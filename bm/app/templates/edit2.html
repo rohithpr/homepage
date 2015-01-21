@@ -90,6 +90,11 @@
 		$("input[name=glyphicon]").val(glyphicon);
 	});
 
+	$(".dropdown_category").click( function(){
+		var category = $(this).text();
+		$("input[name=category]").val(category);
+	});
+
 	$(".cat_edit").click( function(e){
 		e.stopPropagation();
 		

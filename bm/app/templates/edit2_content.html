@@ -17,7 +17,7 @@
 
 								<span id="{{ item.0.id }}" class="cat_edit cat_glyph_style glyphicon glyphicon-pencil" category-color="{{ item.0.progress_bar_color }}" category-row-number="{{ item.0.row_number }}" category-column-number="{{ item.0.column_number }}" category-name="{{ item.0.name }}"></span>
 
-								<span style="color:#ffffff">{{ item.0.name }}</span>
+								<span style="color:#ffffff">{{ item.0.name|truncatechars:8 }}</span>
 							</div>
 						</div>
 
