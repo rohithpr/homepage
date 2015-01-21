@@ -15,11 +15,11 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Bookmark',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('id', models.AutoField(serialize=False, primary_key=True, auto_created=True, verbose_name='ID')),
                 ('name', models.CharField(max_length=50)),
                 ('link', models.TextField()),
                 ('row_number', models.IntegerField(default=0)),
-                ('glyphicon', models.CharField(default=b'asterisk', max_length=30)),
+                ('glyphicon', models.CharField(default='asterisk', max_length=30)),
             ],
             options={
             },
@@ -28,12 +28,25 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Category',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('id', models.AutoField(serialize=False, primary_key=True, auto_created=True, verbose_name='ID')),
                 ('name', models.CharField(max_length=21)),
                 ('row_number', models.IntegerField(default=0)),
                 ('column_number', models.IntegerField(default=0)),
-                ('progress_bar_color', models.CharField(default=b'335544', max_length=6)),
+                ('progress_bar_color', models.CharField(default='335544', max_length=6)),
                 ('user', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
+            ],
+            options={
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Trash',
+            fields=[
+                ('id', models.AutoField(serialize=False, primary_key=True, auto_created=True, verbose_name='ID')),
+                ('name', models.CharField(max_length=50)),
+                ('link', models.TextField()),
+                ('glyphicon', models.CharField(max_length=30)),
+                ('category', models.ForeignKey(to='app.Category')),
             ],
             options={
             },

@@ -10,35 +10,8 @@
 		</title>
 	</head>
 	<style>
-		a:hover {
-			text-decoration: none;
-		}
-		.box {
-			border: 1px solid black;
-		}
-		.progress_style{
-			 width: 100%;
-			 font-size: 1em;
-			 text-align: left;
-		}
-		.cat_glyph_style {
-			color: #ffffff;
-			font-size: 0.9em;
-		}
-		.cat_glyph_style:hover {
-			color: #000000;
-		}
-		.bm_style {
-			color: #ccc;
-			font-size: 0.9em;
-		}
-		.bm_style:hover {
-			color: #000;
-		}
-		.category-container:hover{
-			background-color: rgba(170, 255, 255, 0.25);
-			border-radius: 10%;
-		}
+		
+		{% include "style.html" %}
 
 	</style>
 	<body>
@@ -52,27 +25,18 @@
 						<li><a href="/">Home: {{ user }}</a></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="/b/add_ten_random_bookmarks/">Add ten bookmarks</a></li>
-						<li><a href="/b/add_five_random_categories/">Add five categories</a></li>
+						<li><a href="/b/clear_trash"> Clear Trash </a></li>
 						<li><a href="/b/edit">Edit</a></li>
-						<li><a href="/b/trash">Trash</a></li>
+						<li class="active"><a href="/b/trash">Trash</a></li>
 						<li><a href="/b/logout">Logout</a></li>
 					</ul>
 				</div>
 			</div>
 		</nav>
-		</br></br></br></br>
+
+		{% include "pills.html" %}
 
 		<div class="container-fluid">
-			<div class="row">
-				<div class="col-sm-2">
-				</div>
-				<div class="col-sm-4">
-					<a href="/b/clear_trash">Clear Trash</a>
-				</div>
-				<div class="col-sm-6">
-				</div>
-			</div>
 			<div class="row">
 				{% for col in columns %}
 					<div class="col-sm-2">
@@ -88,12 +52,18 @@
 		</div>
 	</body>
 	<script>
+
+		function restore_bookmark() {
+			window.location.href='/b/restore_bookmark/' + this.id;
+		}
+
 		$(document).ready( function(){
 			$('.trash_del').dblclick( function(){
 				window.location.href='/b/delete_bookmark/' + this.id;
 			});
 
-			$('.trash_restore').click( function(){
+			$('.trash_restore').one("click", function() {
+				// Prevents trying to restore the same bookmark more than once.
 				window.location.href='/b/restore_bookmark/' + this.id;
 			});
 		});

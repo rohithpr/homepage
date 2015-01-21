@@ -174,6 +174,7 @@ def trash_bookmark(request, bookmark_id): # Moves to trash!
 
 @login_required(login_url='/b/login')
 def restore_bookmark(request, bookmark_id): # Moves back to bookmarks!
+	print(bookmark_id)
 	current = Trash.objects.get(id=bookmark_id)
 	bookmarks = Bookmark.objects.filter(category=current.category)
 	row_number = get_max_row_number(bookmarks) + 1
@@ -303,6 +304,9 @@ def random_glyphicon(request, bookmark_id):
 @login_required(login_url='/b/login')
 def add_ten_random_bookmarks(request):
 	categories = list(Category.objects.filter(user=request.user))
+	if categories == []:
+		# Give a message perhaps??
+		return HttpResponseRedirect('/b/edit')
 	for _ in range(10):
 		category = random.choice(categories)
 		raw_name = list(string.ascii_lowercase)
