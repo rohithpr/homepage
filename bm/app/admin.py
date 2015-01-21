@@ -2,7 +2,7 @@ from django.contrib import admin
 from app.models import Category, Bookmark, Trash
 
 class CategoryAdmin(admin.ModelAdmin):
-	list_display = ['name', 'user', 'row_number', 'column_number', 'progress_bar_color']
+	list_display = ['name', 'user', 'row_number', 'column_number', 'progress_bar_color', 'id']
 	list_filter = ['user']
 
 class BookmarkAdmin(admin.ModelAdmin):
