@@ -17,3 +17,15 @@ Web Development Study Group.
 ### Demo
 Take a look at what we've done so far [here](http://rohithpr.github.io/bookmark-manager/homepage.html).  
 PS: The demo site is a static site, database operations do not work.
+
+### Setup
+* Needs Django 1.7 and Python 3.4.
+
+1. Fork and clone the project.
+2. `$ cd bookmark-manager/bm/`
+3. `$ python manage.py makemigrations app`
+4. `$ python manage.py migrate`
+5. `$ python manage.py createsuperuser`
+   Then create an account in interactive mode.
+6. `$ python manage.py runserver`
+7. Go to 127.0.0.1:8000/b/ in your browser and login using the account you just created.

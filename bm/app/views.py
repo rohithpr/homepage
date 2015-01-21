@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 
 from app.models import Category, Bookmark, Trash
+from app.predefined import *
 
 import app.constants as constants
 import random
@@ -98,11 +99,13 @@ def home_page(request):
 
 @login_required(login_url='/b/login')
 def edit_page(request):
+	categories = Category.objects.all()
 	context = {
 				'user': request.user,
 				'columns': get_bookmarks(request),
 				'colors': constants.COLORS,
 				'glyphicons': constants.GLYPHICONS,
+				'categories': categories,
 	}
 	return render(request, 'edit2.html', context)
 
@@ -174,6 +177,7 @@ def trash_bookmark(request, bookmark_id): # Moves to trash!
 
 @login_required(login_url='/b/login')
 def restore_bookmark(request, bookmark_id): # Moves back to bookmarks!
+	print(bookmark_id)
 	current = Trash.objects.get(id=bookmark_id)
 	bookmarks = Bookmark.objects.filter(category=current.category)
 	row_number = get_max_row_number(bookmarks) + 1
@@ -303,6 +307,9 @@ def random_glyphicon(request, bookmark_id):
 @login_required(login_url='/b/login')
 def add_ten_random_bookmarks(request):
 	categories = list(Category.objects.filter(user=request.user))
+	if categories == []:
+		# Give a message perhaps??
+		return HttpResponseRedirect('/b/edit')
 	for _ in range(10):
 		category = random.choice(categories)
 		raw_name = list(string.ascii_lowercase)
@@ -331,3 +338,23 @@ def add_five_random_categories(request):
 			row_number=row_number, progress_bar_color=progress_bar_color)
 		category.save()
 	return HttpResponseRedirect('/b/edit')
+
+@login_required(login_url='/b/login')
+def add_starter_bookmarks(request):
+	old_categories = Category.objects.filter(user=request.user)
+	for category in old_categories:
+		category.delete()
+	# Delete or not?
+
+	for (name, column_number, row_number, progress_bar_color) in predefined_category_details:
+		category = Category(user=request.user, name=name, column_number=column_number, 
+			row_number=row_number, progress_bar_color=progress_bar_color)
+		category.save()
+
+	for category_name in predefined_category_names:
+		category = Category.objects.filter(name=category_name)[0]
+		for (name, link, row_number, glyphicon) in predefined_bookmarks[category_name]:
+			bookmark = Bookmark(category=category, name=name, link=link, row_number=row_number, glyphicon=glyphicon)
+			bookmark.save()
+
+	return HttpResponseRedirect('/b/')

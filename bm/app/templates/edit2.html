@@ -42,7 +42,7 @@
 						<ul class="nav navbar-nav navbar-right">
 							<li><a href="/b/add_ten_random_bookmarks/">Add ten bookmarks</a></li>
 							<li><a href="/b/add_five_random_categories/">Add five categories</a></li>
-							<li><a href="/b/edit">Edit</a></li>
+							<li class="active"><a href="/b/edit">Edit</a></li>
 							<li><a href="/b/trash">Trash</a></li>
 							<li><a href="/b/logout">Logout</a></li>
 						</ul>
@@ -90,7 +90,14 @@
 		$("input[name=glyphicon]").val(glyphicon);
 	});
 
-	$(".cat_edit").click( function(){
+	$(".dropdown_category").click( function(){
+		var category = $(this).text();
+		$("input[name=category]").val(category);
+	});
+
+	$(".cat_edit").click( function(e){
+		e.stopPropagation();
+		
 		$(".bookmark_big_edit_form").hide();
 		var current = $(this);
 		var name = current.attr("category-name");

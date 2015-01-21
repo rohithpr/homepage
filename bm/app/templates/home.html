@@ -50,12 +50,12 @@
 							</br>
 							<div class="category-container">
 								<div class="progress">
-								    <div class="progress-bar progress-bar-striped active progress_style_home" num="{{ item.0.id }}" style="background-color: {{ item.0.progress_bar_color }};">
-										<span style="background:#ffffff; color:#000000">{{ item.0.name }}</span>
+								    <div class="progress-bar progress_style_home" num="{{ item.0.id }}" style="background-color: {{ item.0.progress_bar_color }};">
+										<span style="color:#000000">{{ item.0.name }}</span>
 									</div>
 								</div>
 
-								<div class"category-sub-container" id="cat_num_{{ item.0.id }}">
+								<div class="category-sub-container" id="cat_num_{{ item.0.id }}">
 									{% for bookmark in item.1 %}
 										<a href="{{ bookmark.link }}">
 											<div class="bm_style">
