@@ -20,6 +20,7 @@ PS: The demo site is a static site, database operations do not work.
 
 ### Setup
 * Needs Django 1.7 and Python 3.4.
+
 1. Fork and clone the project.
 2. `$ cd bookmark-manager/bm/`
 3. `$ python manage.py makemigrations app`
