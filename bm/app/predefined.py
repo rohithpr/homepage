@@ -52,9 +52,9 @@ predefined_bookmarks = {
 		('The Guardian', 'http://www.theguardian.com/', 4, ''),
 		('BBC News', 'http://www.bbc.com/news/', 5, ''),
 		('Fox News', 'http://www.foxnews.com/', 6, ''),
-		('The Hindu', 'www.thehindu.com/', 7, ''),
+		('The Hindu', 'http://www.thehindu.com/', 7, ''),
 		('Times of India', 'http://timesofindia.indiatimes.com/', 8, ''),
-		('Deccan Herald', 'www.deccanherald.com/', 9, ''),
+		('Deccan Herald', 'http://www.deccanherald.com/', 9, ''),
 		('Russian Times', 'http://rt.com/', 10, ''),
 		('Time', 'http://time.com/', 11, '')
 	],
@@ -79,22 +79,22 @@ predefined_bookmarks = {
 	'Entertainment': [
 		('Youtube', 'https://www.youtube.com/', 0, ''),
 		('Spotify', 'https://www.spotify.com/', 1, ''),
-		('Metacafe', 'www.metacafe.com/', 2, ''),
-		('Pandora', 'www.pandora.com/', 3, ''),
-		('IMDb', 'www.imdb.com/', 4, ''),
-		('Rotten Tomatoes', 'www.rottentomatoes.com/', 5, ''),
+		('Metacafe', 'http://www.metacafe.com/', 2, ''),
+		('Pandora', 'http://www.pandora.com/', 3, ''),
+		('IMDb', 'http://www.imdb.com/', 4, ''),
+		('Rotten Tomatoes', 'http://www.rottentomatoes.com/', 5, ''),
 	],
 
 	'Sports': [
-		('Goal', 'www.goal.com/', 0, ''),
-		('ESPN Cricinfo', 'www.espncricinfo.com/', 1, ''),
+		('Goal', 'http://www.goal.com/', 0, ''),
+		('ESPN Cricinfo', 'http://www.espncricinfo.com/', 1, ''),
 		('Yahoo Sports', 'sports.yahoo.com/', 2, ''),
 		('ESPN', 'espn.go.com/', 3, ''),
-		('NFL', 'www.nfl.com/', 4, ''),
-		('NBA', 'www.nba.com/', 5, ''),
-		('Sky Sports', 'www.skysports.com/', 6, ''),
-		('WWE', 'www.wwe.com/', 7, ''),
-		('Cricbuzz', 'www.cricbuzz.com/', 8, ''),
+		('NFL', 'http://www.nfl.com/', 4, ''),
+		('NBA', 'http://www.nba.com/', 5, ''),
+		('Sky Sports', 'http://www.skysports.com/', 6, ''),
+		('WWE', 'http://www.wwe.com/', 7, ''),
+		('Cricbuzz', 'http://www.cricbuzz.com/', 8, ''),
 	],
 
 	'E-mail': [
@@ -107,14 +107,14 @@ predefined_bookmarks = {
 	'Reference': [
 		('Wikipedia', 'https://www.wikipedia.org/', 0, ''),
 		('Archive.org', 'https://archive.org/', 1, ''),
-		('Urban Dictionary', 'www.urbandictionary.com/', 2, ''),
-		('WordReference', 'www.wordreference.com/', 3, ''),
-		('Goodreads', 'www.goodreads.com/', 4, ''),
-		('Thesaurus', 'www.thesaurus.com/', 5, ''),
-		('How Stuff Works', 'www.howstuffworks.com/', 6, ''),
-		('Brainy Quote', 'www.brainyquote.com/', 7, ''),
-		('White Pages', 'www.whitepages.com/', 8, ''),
-		('Yellow Pages', 'www.yellowpages.com/', 9, ''),
+		('Urban Dictionary', 'http://www.urbandictionary.com/', 2, ''),
+		('WordReference', 'http://www.wordreference.com/', 3, ''),
+		('Goodreads', 'http://www.goodreads.com/', 4, ''),
+		('Thesaurus', 'http://www.thesaurus.com/', 5, ''),
+		('How Stuff Works', 'http://www.howstuffworks.com/', 6, ''),
+		('Brainy Quote', 'http://www.brainyquote.com/', 7, ''),
+		('White Pages', 'http://www.whitepages.com/', 8, ''),
+		('Yellow Pages', 'http://www.yellowpages.com/', 9, ''),
 	],
 
 	'Tech': [
@@ -125,7 +125,7 @@ predefined_bookmarks = {
 
 	'Educational': [
 		('Coursera', 'https://www.coursera.org/', 0, ''),
-		('W3C', 'www.w3.org/', 1, ''),
+		('W3C', 'http://www.w3.org/', 1, ''),
 		('Udemy', 'https://www.udemy.com/', 2, ''),
 		('MIT', 'http://web.mit.edu/', 3, ''),
 		('Stanford', 'online.stanford.edu/', 4, ''),
@@ -133,7 +133,7 @@ predefined_bookmarks = {
 	],
 
 	'Science': [
-		('Elsevier', 'www.elsevier.com/', 0, ''),
+		('Elsevier', 'http://www.elsevier.com/', 0, ''),
 	],
 
 	'Travel': [
@@ -149,7 +149,7 @@ predefined_bookmarks = {
 		('Cracked', 'http://www.cracked.com/', 0, ''),
 		('StumbleUpon', 'http://www.stumbleupon.com/', 1, ''),
 		('Blah Therapy', 'http://blahtherapy.com/', 2, ''),
-		('Cleverbot', 'www.cleverbot.com/', 3, ''),
+		('Cleverbot', 'http://www.cleverbot.com/', 3, ''),
 	],
 
 }
