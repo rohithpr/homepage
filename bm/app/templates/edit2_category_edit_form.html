@@ -2,12 +2,12 @@
 	<div style="text-align: right;">
 		<span class="glyphicon glyphicon-remove bm_style_glyphicon hide_big_edit_form"></span>
 	</div>
-	<form class="form-horizontal" action="/b/edit_category/">
-
-		<div class="form-group">
-			<label class="control-label col-sm-2" for="ID">ID:</label>
+	<form class="form-horizontal" action="/b/edit_category/" method="post">
+	{% csrf_token %}
+		<div class="form-group" id="hidden_field">
+			<label class="control-label col-sm-2">ID:</label>
 			<div class="col-sm-3">
-				<input type="text" class="form-control" name="ID" disabled/>
+				<input type="text" class="form-control" name="ID"/>
 			</div>
 		</div>
 
@@ -19,7 +19,7 @@
 		</div>
 
 		<div class="form-group">
-			<label class="control-label col-sm-2" for="pwd">Color:</label>
+			<label class="control-label col-sm-2">Color:</label>
 			<div class="col-sm-3"> 
 				<input type="text" class="form-control" name="color" placeholder="Enter color">
 			</div>
@@ -36,14 +36,14 @@
 		</div>
 
 		<div class="form-group">
-			<label class="control-label col-sm-2" for="pwd">Row Number:</label>
+			<label class="control-label col-sm-2">Row Number:</label>
 				<div class="col-sm-3">
  				<input type="number" class="form-control" name="row_number">
 				</div>
 			</div>
 
 			<div class="form-group">
-				<label class="control-label col-sm-2" for="pwd">Column Number:</label>
+				<label class="control-label col-sm-2">Column Number:</label>
 				<div class="col-sm-3"> 
  				<input type="number" class="form-control" name="column_number">
 				</div>

@@ -358,3 +358,20 @@ def add_starter_bookmarks(request):
 			bookmark.save()
 
 	return HttpResponseRedirect('/b/')
+
+
+@login_required(login_url='/b/login')
+def edit_category(request):
+	_id = request.POST['ID']
+	category_name = request.POST['category_name']
+	color = request.POST['color']
+	row_number = int(request.POST['row_number'])-1
+	column_number = int(request.POST['column_number'])-1
+	print(_id, category_name, color, row_number, column_number)
+	category = Category.objects.get(id=_id)
+	category.name = category_name
+	category.progress_bar_color = color
+	category.row_number = row_number
+	category.column_number = column_number
+	category.save()
+	return HttpResponseRedirect('/b/edit/')
