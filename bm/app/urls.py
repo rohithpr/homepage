@@ -32,4 +32,5 @@ urlpatterns = patterns('',
 	url('^delete_existing_and_add_default_bookmarks', views.add_starter_bookmarks),
 
 	url('^edit_category/', views.edit_category),
+	url('^edit_bookmark/', views.edit_bookmark),
 	)

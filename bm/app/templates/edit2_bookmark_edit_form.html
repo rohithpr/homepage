@@ -5,29 +5,30 @@
 	</div>
 
 	<form class="form-horizontal" action="/b/edit_bookmark/" method="post">
-		<div class="form-group">
-			<label class="control-label col-sm-2" for="ID">ID:</label>
+	{% csrf_token %}
+		<div class="form-group hidden_field">
+			<label class="control-label col-sm-2">ID:</label>
 			<div class="col-sm-3">
-				<input type="text" class="form-control" name="ID" disabled/>
+				<input type="text" class="form-control" name="ID"/>
 			</div>
 		</div>
 
 		<div class="form-group">
-			<label class="control-label col-sm-2" for="name">Bookmark Name:</label>
+			<label class="control-label col-sm-2">Bookmark Name:</label>
 		 	<div class="col-sm-3">
 				<input type="text" class="form-control" name="bookmark_name" placeholder="Enter Bookmark Name" />
 			</div>
 		</div>
 
 		<div class="form-group">
-			<label class="control-label col-sm-2" for="link">Link:</label>
+			<label class="control-label col-sm-2">Link:</label>
 			<div class="col-sm-3"> 
 				<input type="text" class="form-control" name="link" placeholder="Enter link" />
 			</div>
 		</div>
 
 		<div class="form-group">
-			<label class="control-label col-sm-2" for="category">Category:</label>
+			<label class="control-label col-sm-2">Category:</label>
 			<div class="col-sm-3"> 
 				<input type="text" class="form-control" name="category" placeholder="Enter category" />
 			</div>
@@ -45,7 +46,7 @@
 		</div>
 
 		<div class="form-group">
-			<label class="control-label col-sm-2" for="pwd">Glyphicon:</label>
+			<label class="control-label col-sm-2">Glyphicon:</label>
 			<div class="col-sm-3"> 
 				<input type="text" class="form-control" name="glyphicon" placeholder="Enter Glyphicon name" />
 			</div>
@@ -63,7 +64,7 @@
 		</div>
 
 		<div class="form-group">
-			<label class="control-label col-sm-2" for="pwd">Row No:</label>
+			<label class="control-label col-sm-2">Row No:</label>
 			<div class="col-sm-3"> 
 				<input type="number" class="form-control" name="row_number" placeholder="Enter row no" />
 			</div>
