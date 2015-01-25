@@ -12,7 +12,7 @@ predefined_category_details = [
 		('Reference', 3, 1, '#81d8d0'),
 
 		('Tech', 4, 0, '#ffa500'),
-		('Science', 4, 1, '#8b1a1a'),
+		('Science', 4, 1, '#12d4B9'),
 		('Educational', 4, 2, '#338167'),
 
 		('Travel', 5, 0, '#1f45d0'),
