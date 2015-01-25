@@ -40,6 +40,8 @@ def get_bookmarks(request):
 
 def insert_object(items, item, position=float('inf')):
 	max_number = get_max_row_number(items)
+	if item.row_number == max_number:
+		return None
 	position = min(position, max_number+1)
 	for idx in items:
 		if idx.row_number >= position:
