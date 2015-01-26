@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, url
-from app import views, actions, bulk_adders, edit_form_handlers, session
+from app import views, actions, bulk_adders, edit_form_handlers, session, adders
 
 urlpatterns = patterns('',
 	url('^login/', views.login_page),  # This must be a part of views and not session.
@@ -30,6 +30,8 @@ urlpatterns = patterns('',
 	url('^add_ten_random_bookmarks/', bulk_adders.add_ten_random_bookmarks),
 	url('^add_five_random_categories/', bulk_adders.add_five_random_categories),
 	url('^delete_existing_and_add_default_bookmarks', bulk_adders.add_starter_bookmarks),
+
+	url('^add_bookmark/(?P<category_id>\d+)', adders.add_bookmark),
 
 	url('^edit_category/', edit_form_handlers.edit_category),
 	url('^edit_bookmark/', edit_form_handlers.edit_bookmark),
