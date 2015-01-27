@@ -3,8 +3,10 @@ from app import views, actions, bulk_adders, edit_form_handlers, session, adders
 
 urlpatterns = patterns('',
 	url('^login/', views.login_page),  # This must be a part of views and not session.
+	url('^inactive/', views.inactive),
 	url('^verify/', session.verify),
 	url('^logout/', session.logout_page),
+	url('^add_user/', session.add_user),
 
 	url('^$', views.home_page),
 	url('^edit/', views.edit_page),
@@ -29,7 +31,7 @@ urlpatterns = patterns('',
 
 	url('^add_ten_random_bookmarks/', bulk_adders.add_ten_random_bookmarks),
 	url('^add_five_random_categories/', bulk_adders.add_five_random_categories),
-	url('^delete_existing_and_add_default_bookmarks', bulk_adders.add_starter_bookmarks),
+	url('^delete_existing_and_add_default_bookmarks/', bulk_adders.add_starter_bookmarks),
 
 	url('^add_bookmark/(?P<category_id>\d+)', adders.add_bookmark),
 

@@ -6,6 +6,8 @@ from app.helpers import *
 
 import app.constants as constants
 
+def inactive(request):
+	return render(request, 'inactive.html')
 
 def login_page(request):
 	return render(request, 'login.html')
