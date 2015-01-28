@@ -31,3 +31,10 @@ class Trash(models.Model):
 
 	def __str__(self):
 		return str(self.category) + ' ' + str(self.name)
+
+class ValidationQueue(models.Model):
+	email = models.CharField(max_length=50)
+	key = models.CharField(max_length=50)
+
+	def __str__(self):
+		return str(self.email)

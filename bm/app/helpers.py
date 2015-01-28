@@ -1,7 +1,12 @@
-from app.models import Category, Bookmark
+from app.models import Category, Bookmark, ValidationQueue
+from smtplib import SMTP_SSL as SMTP
+from email.mime.text import MIMEText
 
 import random
 import string
+
+from_address ='praroh2@gmail.com'
+password = ''
 
 def get_bookmarks(request):
 	categories = Category.objects.filter(user=request.user)
@@ -67,3 +72,28 @@ def get_random_color():
 	hexdigits = list(string.hexdigits * 6)
 	random.shuffle(hexdigits)
 	return ''.join(hexdigits[:6])
+
+def create_validator(email):
+	key = list(string.ascii_uppercase + string.ascii_lowercase + string.digits)
+	random.shuffle(key)
+	key = ''.join(key[:25])
+	item = ValidationQueue(key=key, email=email)
+	item.save()
+
+	text = '''
+	Hello,
+		Please go to http://127.0.0.1:8000/b/confirm_account/''' + key + '''/ to validate your account.
+	'''
+	message = MIMEText(text, 'plain')
+	message['Subject'] = 'Verify Account'
+	to_address = email
+	try:
+		conn = SMTP('smtp.gmail.com')
+		conn.set_debuglevel(True)
+		conn.login(from_address, password)
+		try:
+			conn.sendmail(from_address, to_address, message.as_string())
+		finally:
+			conn.close()
+	except Exception:
+		print("Failed to send email")

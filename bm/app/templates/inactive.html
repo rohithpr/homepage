@@ -17,23 +17,7 @@
     <script type="text/javascript">
 
     $(document).ready( function(){
-        function someFunction(){
-            $.ajax({
-                type: "GET",
-                url: 'http://127.0.0.1:8000/b/test/',
-                dataType: 'text',
-                cache: 'false',
-                data: username = 'qwerty',
-                success: function(data) {
-                    alert("1 " + data);
-                },
-                error: function(xhr, textStatus, errorThrown){
-                    alert("2");
-                }
-            });
-        }
-        alert("0");
-        $('html').click(someFunction);
+
     });
     </script>
 </html>

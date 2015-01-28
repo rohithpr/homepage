@@ -8,6 +8,7 @@ urlpatterns = patterns('',
 	url('^verify/', session.verify),
 	url('^logout/', session.logout_page),
 	url('^add_user/', session.add_user),
+	url('^confirm_account/(?P<key>\w+)/$', session.confirm_account),
 
 	url('^$', views.home_page),
 	url('^edit/', views.edit_page),

@@ -56,8 +56,10 @@ def add_starter_bookmarks(request):
 			row_number=row_number, progress_bar_color=progress_bar_color)
 		category.save()
 
+	categories = Category.objects.filter(user=request.user)
+
 	for category_name in predefined_category_names:
-		category = Category.objects.filter(name=category_name)[0]
+		category = categories.filter(name=category_name)[0]
 		for (name, link, row_number, glyphicon) in predefined_bookmarks[category_name]:
 			bookmark = Bookmark(category=category, name=name, link=link, row_number=row_number, glyphicon=glyphicon)
 			bookmark.save()
