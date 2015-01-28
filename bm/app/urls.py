@@ -36,6 +36,7 @@ urlpatterns = patterns('',
 	url('^delete_existing_and_add_default_bookmarks/', bulk_adders.add_starter_bookmarks),
 
 	url('^add_bookmark/(?P<category_id>\d+)', adders.add_bookmark),
+	url('^add_category/', adders.add_category),
 
 	url('^edit_category/', edit_form_handlers.edit_category),
 	url('^edit_bookmark/', edit_form_handlers.edit_bookmark),

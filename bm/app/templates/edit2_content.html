@@ -56,7 +56,7 @@
 												<input type="text" class="form-control add_bm_style" name="link" placeholder="Enter link">
 											</div>
 											<div class="col-sm-4">
-							   					<input type="submit" value="Add" class="btn btn_small"/>
+							   					<input type="submit" value="Add" class="form-control"/> <!-- btn btn_small"/> -->
 											</div>
 										</div>
 									</form>
@@ -67,5 +67,55 @@
 				{% endfor %}
 			</div>
 		{% endfor %}
+	</div>
+</div>
+
+<br/><br/><br/><br/>
+<div class="container-fluid">
+	<div class="row">
+	<div class="col-sm-5">
+	</div>
+	<div class="col-sm-2">
+		<p style="text-align: center;"> New Category </p>
+		<form class="form-horzontal" method="post" action="/b/add_category/">
+			{% csrf_token %}
+			<div class="form-group">
+				<input type="text" class="form-control" name="name" placeholder="Enter category name">
+			</div>
+
+			<div>
+				<div class="form-group col-xs-10">
+					<input type="text" class="form-control" name="color" placeholder="Color"/>
+				</div>
+			
+				<div class="input-append form-group col-xs-2">
+					<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
+						<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu" style="max-height: 150px; overflow: hidden; overflow-y: auto;">
+						{% for color in colors %}
+							<li class="dropdown_color"><a>{{ color }}</a></li>
+						{% endfor %}
+					</ul>
+				</div>
+			</div>
+
+			</br>
+			</br>
+			</br>
+
+			<div class="form-group">
+				<input type="text" class="form-control" name="column_number" placeholder="Column number"/>
+			</div>
+
+			<div class="form-group">
+				<input type="text" class="form-control" name="row_number" placeholder="Row number"/>
+			</div>
+
+			<div class="form-group">
+				<input type="submit" class="form-control" value="Create"/>
+			</div>
+		</form>
+	</div>
 	</div>
 </div>

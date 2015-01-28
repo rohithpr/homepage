@@ -49,6 +49,8 @@ def insert_object(items, item, position=float('inf')):
 	max_number = get_max_row_number(items)
 	if item.row_number == max_number:
 		return None
+	if position < 0:
+		position = float('inf')
 	position = min(position, max_number+1)
 	for idx in items:
 		if idx.row_number >= position:
@@ -85,6 +87,8 @@ def create_validator(email):
 	text = '''
 	Hello,
 		Please go to http://127.0.0.1:8000/b/confirm_account/''' + key + '''/ to validate your account.
+
+		Validation will take up to a minute. Please do not interrupt the process by closing the tab.
 	'''
 	message = MIMEText(text, 'plain')
 	message['Subject'] = 'Verify Account'

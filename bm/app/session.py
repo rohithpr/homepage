@@ -13,7 +13,7 @@ def verify(request):
 			login(request, user)
 			return HttpResponseRedirect('/')
 		else:
-			return HttpResponseRedirect('/b/login/')
+			return HttpResponseRedirect('/b/inactive/')
 	else:
 		return HttpResponseRedirect('/b/login/')
 
