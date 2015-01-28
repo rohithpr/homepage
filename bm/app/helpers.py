@@ -7,6 +7,8 @@ import string
 
 from_address ='praroh2@gmail.com'
 password = ''
+# IMPORTANT:
+# SET PASSWORD TO AN EMPTY STRING BEFORE COMMITTING CHANGES.
 
 def get_bookmarks(request):
 	categories = Category.objects.filter(user=request.user)

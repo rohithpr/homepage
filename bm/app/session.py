@@ -22,13 +22,21 @@ def logout_page(request):
 	return HttpResponseRedirect('/')
 
 def add_user(request):
-	# Check if username or email exists
 	username = request.POST['username']
+	tester = User.objects.filter(username=username)
+	if len(tester) != 0:
+		return HttpResponseRedirect('/b/')
+	
 	email = request.POST['email']
+	tester = User.objects.filter(email=email)
+	if len(tester) != 0:
+		return HttpResponseRedirect('/b/')
+
 	password = request.POST['password']
 	repassword = request.POST['repassword']
-	if password != repassword:
+	if password != repassword or len(password) < 5:
 		return HttpResponseRedirect('/b/')
+
 	new_user = User.objects.create_user(username=username, password=password, email=email)
 	new_user.is_active = False
 	new_user.save()
@@ -43,7 +51,6 @@ def confirm_account(request, key):
 	user.is_active = True
 	user.save()
 	validator.delete()
-	# user = authenticate(username=user.username, password=user.password)
 	user.backend = 'django.contrib.auth.backends.ModelBackend'
 	login(request, user)
 	return HttpResponseRedirect('/b/delete_existing_and_add_default_bookmarks/')
