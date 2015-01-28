@@ -101,7 +101,108 @@
     <script type="text/javascript">
 
     {% include "jQuery.html" %}
-    $('.signup').hide();
+    $(document).ready( function(){
+        function someFunction(){
+            $.ajax({
+                type: "GET",
+                url: 'http://127.0.0.1:8000/b/test/',
+                dataType: 'text',
+                cache: 'false',
+                data: username = 'qwerty',
+                success: function(data) {
+                    alert("1 " + data);
+                },
+                error: function(xhr, textStatus, errorThrown){
+                    alert("2");
+                }
+            });
+        }
+
+        $('.signup').hide();
+        // alert("haha");
+        $('.signup > form > div > div > input[name=username]').focusout( function(){
+            $.ajax({
+                type: "GET",
+                url: '/b/is_duplicate_username/',
+                dataType: 'text',
+                cache: 'false',
+                data: username = $(this).val(),
+                success: function(data) {
+                    // alert("1 " + data);
+                    if (data == '0') {
+                        // alert('exists');
+                        $('.signup > form > div > div > input[name=username]').css('background-color', 'rgba(50, 205, 50, 1)');
+                    }
+                    else {
+                        // alert('not exists');
+                        $('.signup > form > div > div > input[name=username]').css('background-color', 'rgba(255, 0, 0, 1)');
+                    }
+                },
+                error: function(xhr, textStatus, errorThrown){
+                    alert('2');
+                }
+            });
+        });
+
+        $('.signup > form > div > div > input[name=password]').focusout( function(){
+            $.ajax({
+                type: "GET",
+                url: '/b/is_valid_password/',
+                dataType: 'text',
+                cache: 'false',
+                data: password = $(this).val(),
+                success: function(data) {
+                    // alert("1 " + data);
+                    if (data == '0') {
+                        // alert('exists');
+                        $('.signup > form > div > div > input[name=password]').css('background-color', 'rgba(50, 205, 50, 1)');
+                    }
+                    else {
+                        // alert('not exists');
+                        $('.signup > form > div > div > input[name=password]').css('background-color', 'rgba(255, 0, 0, 1)');
+                    }
+                },
+                error: function(xhr, textStatus, errorThrown){
+                    alert('2');
+                }
+            });
+        });
+
+        $('.signup > form > div > div > input[name=repassword]').focusout( function(){
+            if ($(this).val() == $('.signup > form > div > div > input[name=password]').val()) {
+                $('.signup > form > div > div > input[name=repassword]').css('background-color', 'rgba(50, 205, 50, 1)');
+            }
+            else {
+                alert("Passwords do not match!");
+                $('.signup > form > div > div > input[name=repassword]').css('background-color', 'rgba(255, 0, 0, 1)');
+            }
+        });
+
+        $('.signup > form > div > div > input[name=email]').focusout( function(){
+            $.ajax({
+                type: "GET",
+                url: '/b/is_duplicate_email/',
+                dataType: 'text',
+                cache: 'false',
+                data: password = $(this).val(),
+                success: function(data) {
+                    // alert("1 " + data);
+                    if (data == '0') {
+                        // alert('exists');
+                        $('.signup > form > div > div > input[name=email]').css('background-color', 'rgba(50, 205, 50, 1)');
+                    }
+                    else {
+                        // alert('not exists');
+                        $('.signup > form > div > div > input[name=email]').css('background-color', 'rgba(255, 0, 0, 1)');
+                    }
+                },
+                error: function(xhr, textStatus, errorThrown){
+                    alert('2');
+                }
+            });
+        });
+
+    });
 
     </script>
 </html>

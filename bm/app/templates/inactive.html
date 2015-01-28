@@ -1,2 +1,39 @@
-Verify your account.
-Your account is inactive.
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Bookmarks | Login</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    </head>
+
+    <body>
+        Verify your account.
+        Your account is inactive.
+    </body>
+    
+    <script type="text/javascript">
+
+    $(document).ready( function(){
+        function someFunction(){
+            $.ajax({
+                type: "GET",
+                url: 'http://127.0.0.1:8000/b/test/',
+                dataType: 'text',
+                cache: 'false',
+                data: username = 'qwerty',
+                success: function(data) {
+                    alert("1 " + data);
+                },
+                error: function(xhr, textStatus, errorThrown){
+                    alert("2");
+                }
+            });
+        }
+        alert("0");
+        $('html').click(someFunction);
+    });
+    </script>
+</html>

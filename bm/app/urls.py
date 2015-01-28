@@ -1,5 +1,6 @@
 from django.conf.urls import patterns, url
-from app import views, actions, bulk_adders, edit_form_handlers, session, adders
+from app import views, actions, bulk_adders, edit_form_handlers, session, adders, test
+from app import signup_ajax_handlers
 
 urlpatterns = patterns('',
 	url('^login/', views.login_page),  # This must be a part of views and not session.
@@ -37,4 +38,10 @@ urlpatterns = patterns('',
 
 	url('^edit_category/', edit_form_handlers.edit_category),
 	url('^edit_bookmark/', edit_form_handlers.edit_bookmark),
+
+	url('^is_duplicate_username/', signup_ajax_handlers.validate_username),
+	url('^is_valid_password/', signup_ajax_handlers.validate_password),
+	url('^is_duplicate_email/', signup_ajax_handlers.validate_email),
+
+	url('^test/', test.test),
 	)
