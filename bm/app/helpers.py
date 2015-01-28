@@ -5,7 +5,7 @@ from email.mime.text import MIMEText
 import random
 import string
 
-from_address ='praroh2@gmail.com'
+from_address ='project.bookmark.manager@gmail.com'
 password = ''
 # IMPORTANT:
 # SET PASSWORD TO AN EMPTY STRING BEFORE COMMITTING CHANGES.
