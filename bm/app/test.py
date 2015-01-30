@@ -5,7 +5,7 @@ def test(request):
 	if request.is_ajax():
 		if len(request.GET) == 0:
 			return HttpResponse('1')
-		for i in request.GET: # A better way to do this?
+		for i in request.GET: # Issue #13
 			username = i
 			break
 		users = User.objects.all()
