@@ -6,6 +6,8 @@ from app.helpers import *
 
 import app.constants as constants
 
+def inactive(request):
+	return render(request, 'inactive.html')
 
 def login_page(request):
 	return render(request, 'login.html')
@@ -20,11 +22,13 @@ def home_page(request):
 
 @login_required(login_url='/b/login')
 def edit_page(request):
+	categories = Category.objects.filter(user=request.user)
 	context = {
 				'user': request.user,
 				'columns': get_bookmarks(request),
 				'colors': constants.COLORS,
 				'glyphicons': constants.GLYPHICONS,
+				'categories': categories,
 	}
 	return render(request, 'edit2.html', context)
 
