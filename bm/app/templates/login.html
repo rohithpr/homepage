@@ -19,18 +19,15 @@
         <nav class="navbar navbar-inverse navbar-fixed-top" style="border-radius:0px;">
             <div class="container-fluid">
                 <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
                     <a class="navbar-brand">Bookmarks</a>
                 </div>
-            </div>
-        </nav>
-
-        </br></br></br></br></br>
-
-        <div class="container">
-            <div class="row">
-                <div class="login col-sm-offset-8 col-sm-3">
-                    </br>
-                    <form class="form-horizontal" method="post" action="/b/verify/">
+                <div>
+                    <form class="collapse navbar-collapse navbar-form navbar-right" id="myNavbar" method="post" action="/b/verify/">
                         {% csrf_token %}
                         <div class="form-group">
                             <div class="col-sm-12">
@@ -43,18 +40,20 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="col-xs-12">
+                            <div class="col-sm-12">
                                 <input type="submit" value="Login" class="btn"/>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="old_user col-xs-12">
-                                <input type="button" value="New User?" class="btn"/>
-                            </div>
-                        </div>
+                        
                     </form>
                 </div>
+            </div>
+        </nav>
 
+        </br></br></br></br></br>
+
+        <div class="container">
+            <div class="row">
                 <div class="signup col-sm-offset-8 col-sm-3">
                     </br>
                     <form class="form-horizontal" method="post" action="/b/add_user/">
@@ -88,11 +87,6 @@
                                 <input type="submit" value="Sign Up" class="btn"/>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="new_user col-xs-12">
-                                <input type="button" value="Old User?" class="btn"/>
-                            </div>
-                        </div>
                     </form>
                 </div>
             </div>
@@ -118,8 +112,6 @@
             });
         }
 
-        $('.signup').hide();
-        // alert("haha");
         $('.signup > form > div > div > input[name=username]').focusout( function(){
             $.ajax({
                 type: "GET",

@@ -1,31 +1,5 @@
         $(document).ready( function(){
 
-            // Login page.
-            $('.old_user').click( function(){
-                $login = $('.login');
-                $login.toggle();
-                var username = $login.find('input[name=username]').val();
-                var password = $login.find('input[name=password]').val();
-
-                $signup = $('.signup');
-                $signup.toggle();
-                $signup.find('input[name=username]').val(username);
-                $signup.find('input[name=password]').val(password);
-                $('input[name=repassword]').focus();
-            });
-
-            $('.new_user').click( function(){
-                $signup = $('.signup');
-                $signup.toggle();
-                var username = $signup.find('input[name=username]').val();
-                var password = $signup.find('input[name=password]').val();
-
-                $login = $('.login');
-                $login.toggle();
-                $login.find('input[name=username]').val(username);
-                $login.find('input[name=password]').val(password);
-            });
-
             // Nav-pill controlls.
             $('.bm_collapser').click( function(){
                 $('.category-sub-container').hide();
