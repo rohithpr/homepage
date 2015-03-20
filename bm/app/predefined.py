@@ -134,6 +134,7 @@ predefined_bookmarks = {
 
 	'Science': [
 		('Elsevier', 'http://www.elsevier.com/', 0, ''),
+		('TED', 'http://www.ted.com/', 1, ''),
 	],
 
 	'Travel': [
