@@ -15,7 +15,7 @@ A bookmark manager that makes efficient use of screen space to display as many b
 Web Development Study Group.
 
 ### Demo
-Take a look at what we've done so far [here](http://rohithpr.github.io/bookmark-manager/homepage.html).  
+Take a look at what we've done so far [here](http://rohithpr.github.io/bookmark-manager/).  
 PS: The demo site is a static site, database operations do not work.
 
 ### Setup
