@@ -1,9 +1,6 @@
 # bookmark-manager
 A bookmark manager that makes efficient use of screen space to display as many bookmarks as possible without sacrificing usability. Storing the bookmarks on a central database would allow users to access them from multiple devices. This calls for a responsive design that can accomodate users accessing bookmarks from devices of different sizes.
 
-### Study Group
-Web Development Study Group.
-
 ### Demo
 Take a look at what we've done so far [here](http://rohithpr.github.io/bookmark-manager/).  
 PS: The demo site is a static site, database operations do not work.
