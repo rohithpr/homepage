@@ -26,9 +26,8 @@ SECRET_KEY = 'syuu33l)!h+8b&06b%jn-!0o^x2$rzqi**$x9m)%zn9p(vfufr'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'j2qhkyarcl.execute-api.us-east-1.amazonaws.com',
+    '.execute-api.us-east-1.amazonaws.com',
     '127.0.0.1',
-    '*.execute-api.us-east-1.amazonaws.com',
 ]
 
 
