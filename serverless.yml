@@ -44,10 +44,6 @@ provider:
 #            - "Ref" : "ServerlessDeploymentBucket"
 #            - "/*"
 
-# you can define service wide environment variables here
-#  environment:
-#    variable1: value1
-
 # you can add packaging information here
 #package:
 #  include:
@@ -60,12 +56,11 @@ provider:
 functions:
   hello:
     handler: homepage.wsgi.lambda_handler
-#    The following are a few example events you can configure
-#    NOTE: Please make sure to change your handler code to work with those events
-#    Check the event documentation for details
     events:
       - http: 'ANY {proxy+}'
       - http: ANY /
+    environment:
+      DJANGO_SETTINGS_MODULE: homepage.settings.production
 #      - websocket: $connect
 #      - s3: ${env:BUCKET}
 #      - schedule: rate(10 minutes)
@@ -94,10 +89,6 @@ functions:
 #          conditions:
 #            host: example.com
 #            path: /hello
-
-#    Define function environment variables here
-#    environment:
-#      variable2: value2
 
 # you can add CloudFormation resource templates here
 #resources:
