@@ -1,5 +1,14 @@
-from django.http import HttpResponse
+from rest_framework import routers, serializers, viewsets
+
+from .models import Item
 
 
-def index(request):
-    return HttpResponse("Hello, world. You're at the index.")
+class ItemSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Item
+        fields = ["id", "key", "value", "kind"]
+
+
+class ItemViewSet(viewsets.ModelViewSet):
+    queryset = Item.objects.all()
+    serializer_class = ItemSerializer
