@@ -1,0 +1,5 @@
+[run]
+include = bookmarks/*, homepage/*
+omit = *migrations*, *tests*, */site-packages/*
+plugins =
+    django_coverage_plugin
