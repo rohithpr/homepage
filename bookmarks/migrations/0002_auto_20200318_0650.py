@@ -17,90 +17,50 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name="Collection",
             fields=[
-                (
-                    "id",
-                    models.AutoField(
-                        auto_created=True,
-                        primary_key=True,
-                        serialize=False,
-                        verbose_name="ID",
-                    ),
-                ),
+                ("id", models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID",),),
                 (
                     "created",
                     model_utils.fields.AutoCreatedField(
-                        default=django.utils.timezone.now,
-                        editable=False,
-                        verbose_name="created",
+                        default=django.utils.timezone.now, editable=False, verbose_name="created",
                     ),
                 ),
                 (
                     "modified",
                     model_utils.fields.AutoLastModifiedField(
-                        default=django.utils.timezone.now,
-                        editable=False,
-                        verbose_name="modified",
+                        default=django.utils.timezone.now, editable=False, verbose_name="modified",
                     ),
                 ),
-                (
-                    "key",
-                    models.CharField(
-                        max_length=20,
-                        validators=[django.core.validators.MinLengthValidator(1)],
-                    ),
-                ),
-                (
-                    "column",
-                    models.IntegerField(
-                        verbose_name=django.core.validators.MinValueValidator(0)
-                    ),
-                ),
-                (
-                    "row",
-                    models.IntegerField(
-                        verbose_name=django.core.validators.MinValueValidator(0)
-                    ),
-                ),
+                ("key", models.CharField(max_length=20, validators=[django.core.validators.MinLengthValidator(1)],),),
+                ("column", models.IntegerField(verbose_name=django.core.validators.MinValueValidator(0)),),
+                ("row", models.IntegerField(verbose_name=django.core.validators.MinValueValidator(0)),),
             ],
             options={"abstract": False,},
         ),
         migrations.AddField(
             model_name="item",
             name="row",
-            field=models.IntegerField(
-                default=0, verbose_name=django.core.validators.MinValueValidator(0)
-            ),
+            field=models.IntegerField(default=0, verbose_name=django.core.validators.MinValueValidator(0)),
             preserve_default=False,
         ),
         migrations.AlterField(
             model_name="item",
             name="key",
-            field=models.CharField(
-                max_length=20, validators=[django.core.validators.MinLengthValidator(1)]
-            ),
+            field=models.CharField(max_length=20, validators=[django.core.validators.MinLengthValidator(1)]),
         ),
         migrations.AlterField(
             model_name="item",
             name="kind",
-            field=models.CharField(
-                choices=[("bookmark", "Bookmark")], default="bookmark", max_length=20
-            ),
+            field=models.CharField(choices=[("bookmark", "Bookmark")], default="bookmark", max_length=20),
         ),
         migrations.AlterField(
             model_name="item",
             name="value",
-            field=models.TextField(
-                validators=[django.core.validators.MinLengthValidator(1)]
-            ),
+            field=models.TextField(validators=[django.core.validators.MinLengthValidator(1)]),
         ),
         migrations.AddField(
             model_name="item",
             name="collection",
-            field=models.ForeignKey(
-                default=0,
-                on_delete=django.db.models.deletion.CASCADE,
-                to="bookmarks.Collection",
-            ),
+            field=models.ForeignKey(default=0, on_delete=django.db.models.deletion.CASCADE, to="bookmarks.Collection",),
             preserve_default=False,
         ),
     ]

@@ -9,9 +9,7 @@ class Item(TimeStampedModel):
 
     key = models.CharField(max_length=20, validators=[MinLengthValidator(1)])
     value = models.TextField(validators=[MinLengthValidator(1)])
-    kind = models.CharField(
-        max_length=20, choices=Kinds.choices, default=Kinds.BOOKMARK
-    )
+    kind = models.CharField(max_length=20, choices=Kinds.choices, default=Kinds.BOOKMARK)
     row = models.IntegerField(MinValueValidator(0),)
     collection = models.ForeignKey("Collection", on_delete=models.CASCADE)
 

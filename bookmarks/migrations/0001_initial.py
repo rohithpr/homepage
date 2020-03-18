@@ -16,29 +16,17 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name="Item",
             fields=[
-                (
-                    "id",
-                    models.AutoField(
-                        auto_created=True,
-                        primary_key=True,
-                        serialize=False,
-                        verbose_name="ID",
-                    ),
-                ),
+                ("id", models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID",),),
                 (
                     "created",
                     model_utils.fields.AutoCreatedField(
-                        default=django.utils.timezone.now,
-                        editable=False,
-                        verbose_name="created",
+                        default=django.utils.timezone.now, editable=False, verbose_name="created",
                     ),
                 ),
                 (
                     "modified",
                     model_utils.fields.AutoLastModifiedField(
-                        default=django.utils.timezone.now,
-                        editable=False,
-                        verbose_name="modified",
+                        default=django.utils.timezone.now, editable=False, verbose_name="modified",
                     ),
                 ),
                 (
@@ -52,8 +40,7 @@ class Migration(migrations.Migration):
                 (
                     "value",
                     models.TextField(
-                        validators=[django.core.validators.MinLengthValidator(1)],
-                        verbose_name="Value of the item",
+                        validators=[django.core.validators.MinLengthValidator(1)], verbose_name="Value of the item",
                     ),
                 ),
                 (

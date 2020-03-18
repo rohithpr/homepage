@@ -13,7 +13,4 @@ def test_item___str__():
 
 def test_collection___str__():
     collection = CollectionFactory()
-    assert (
-        f"{collection.key}::{collection.column}::{collection.row}"
-        == collection.__str__()
-    )
+    assert f"{collection.key}::{collection.column}::{collection.row}" == collection.__str__()
