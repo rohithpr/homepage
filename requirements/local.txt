@@ -1,0 +1,4 @@
+-r ./base.txt
+
+django-extensions==2.2.8
+psycopg2==2.8.4
