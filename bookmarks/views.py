@@ -1,4 +1,5 @@
-from rest_framework import routers, serializers, viewsets
+from rest_framework import serializers
+from rest_framework_json_api.views import ModelViewSet
 
 from .models import Collection, Item
 
@@ -9,7 +10,7 @@ class ItemSerializer(serializers.ModelSerializer):
         fields = ["id", "key", "value", "kind", "row", "collection"]
 
 
-class ItemViewSet(viewsets.ModelViewSet):
+class ItemViewSet(ModelViewSet):
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
 
@@ -20,6 +21,6 @@ class CollectionSerializer(serializers.ModelSerializer):
         fields = ["key", "column", "row", "id"]
 
 
-class CollectionViewSet(viewsets.ModelViewSet):
+class CollectionViewSet(ModelViewSet):
     queryset = Collection.objects.all()
     serializer_class = CollectionSerializer
