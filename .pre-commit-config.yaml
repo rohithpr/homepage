@@ -16,8 +16,10 @@ repos:
     hooks:
       - id: black
         language_version: python3.8
+        files: '\.py$'
 
   - repo: https://github.com/timothycrosley/isort
     rev: 4.3.21-2
     hooks:
       - id: isort
+        files: '\.py$'
