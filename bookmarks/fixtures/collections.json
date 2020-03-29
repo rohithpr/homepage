@@ -1,0 +1,101 @@
+[
+  {
+    "model": "bookmarks.collection",
+    "pk": 1,
+    "fields": {
+      "key": "Search Engines",
+      "row": 0,
+      "column": 0
+    }
+  },
+  {
+    "model": "bookmarks.collection",
+    "pk": 2,
+    "fields": {
+      "key": "AWS",
+      "row": 1,
+      "column": 0
+    }
+  },
+  {
+    "model": "bookmarks.collection",
+    "pk": 3,
+    "fields": {
+      "key": "Mail",
+      "row": 0,
+      "column": 1
+    }
+  },
+  {
+    "model": "bookmarks.collection",
+    "pk": 4,
+    "fields": {
+      "key": "Tech",
+      "row": 1,
+      "column": 1
+    }
+  },
+  {
+    "model": "bookmarks.collection",
+    "pk": 5,
+    "fields": {
+      "key": "Work",
+      "row": 0,
+      "column": 2
+    }
+  },
+  {
+    "model": "bookmarks.collection",
+    "pk": 6,
+    "fields": {
+      "key": "Tools",
+      "row": 0,
+      "column": 3
+    }
+  },
+  {
+    "model": "bookmarks.collection",
+    "pk": 7,
+    "fields": {
+      "key": "Finances",
+      "row": 0,
+      "column": 4
+    }
+  },
+  {
+    "model": "bookmarks.collection",
+    "pk": 8,
+    "fields": {
+      "key": "Blogs",
+      "row": 1,
+      "column": 4
+    }
+  },
+  {
+    "model": "bookmarks.collection",
+    "pk": 9,
+    "fields": {
+      "key": "Entertainment",
+      "row": 0,
+      "column": 5
+    }
+  },
+  {
+    "model": "bookmarks.collection",
+    "pk": 10,
+    "fields": {
+      "key": "Random",
+      "row": 1,
+      "column": 5
+    }
+  },
+  {
+    "model": "bookmarks.collection",
+    "pk": 11,
+    "fields": {
+      "key": "Triage",
+      "row": 2,
+      "column": 5
+    }
+  }
+]

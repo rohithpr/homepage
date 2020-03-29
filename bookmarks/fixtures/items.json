@@ -1,0 +1,112 @@
+[
+  {
+    "model": "bookmarks.item",
+    "pk": 1,
+    "fields": {
+      "key": "duck",
+      "value": "https://duckduckgo.com",
+      "row": 0,
+      "collection": 1
+    }
+  },
+  {
+    "model": "bookmarks.item",
+    "pk": 2,
+    "fields": {
+      "key": "robomaker",
+      "value": "https://aws.amazon.com/robomaker/resources/#Robotics_software",
+      "row": 0,
+      "collection": 2
+    }
+  },
+  {
+    "model": "bookmarks.item",
+    "pk": 3,
+    "fields": {
+      "key": "Gmail",
+      "value": "https://mail.google.com/u/0",
+      "row": 0,
+      "collection": 3
+    }
+  },
+  {
+    "model": "bookmarks.item",
+    "pk": 4,
+    "fields": {
+      "key": "StackOverflow",
+      "value": "https://www.stackoverflow.com/",
+      "row": 0,
+      "collection": 4
+    }
+  },
+  {
+    "model": "bookmarks.item",
+    "pk": 5,
+    "fields": {
+      "key": "Github",
+      "value": "https://github.com",
+      "row": 0,
+      "collection": 5
+    }
+  },
+  {
+    "model": "bookmarks.item",
+    "pk": 6,
+    "fields": {
+      "key": "draw.io",
+      "value": "https://draw.io",
+      "row": 0,
+      "collection": 6
+    }
+  },
+  {
+    "model": "bookmarks.item",
+    "pk": 7,
+    "fields": {
+      "key": "Passive Site",
+      "value": "http://passivefunds.in",
+      "row": 0,
+      "collection": 7
+    }
+  },
+  {
+    "model": "bookmarks.item",
+    "pk": 8,
+    "fields": {
+      "key": "Prof Galloway",
+      "value": "https://www.profgalloway.com",
+      "row": 0,
+      "collection": 8
+    }
+  },
+  {
+    "model": "bookmarks.item",
+    "pk": 9,
+    "fields": {
+      "key": "Netflix",
+      "value": "https://www.netflix.com/browse",
+      "row": 0,
+      "collection": 9
+    }
+  },
+  {
+    "model": "bookmarks.item",
+    "pk": 10,
+    "fields": {
+      "key": "Zooinverse",
+      "value": "https://www.zooniverse.org",
+      "row": 0,
+      "collection": 10
+    }
+  },
+  {
+    "model": "bookmarks.item",
+    "pk": 11,
+    "fields": {
+      "key": "Music Brainz",
+      "value": "https://picard.musicbrainz.org/",
+      "row": 0,
+      "collection": 11
+    }
+  }
+]
