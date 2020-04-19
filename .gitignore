@@ -147,3 +147,6 @@ node_modules/
 
 # Serverless
 .serverless/
+
+# Project specific
+frontend/src/css/style.css

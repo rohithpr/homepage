@@ -1,0 +1,18 @@
+// This file contains resets and some other base configs
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  // font-size has been defined in base instead of typography because it defines 1rem
+  font-size: 50%;
+}
+
+body {
+  box-sizing: border-box;
+}
