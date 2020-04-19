@@ -1,14 +1,16 @@
 <template>
   <div id="app">
-    hello!
+    <Collections></Collections>
   </div>
 </template>
 
 <script>
+import Collections from './components/collections'
 
 export default {
   name: 'App',
   components: {
+    Collections
   }
 }
 </script>
