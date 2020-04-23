@@ -33,8 +33,9 @@ const mutations = {
 const transformRawCollection = (collections) => {
   return collections.map((collection) => {
     return {
+      ...collection.attributes,
       id: collection.id,
-      ...collection.attributes
+      items: collection.relationships.item_set.data.map(item => item.id)
     }
   })
 }

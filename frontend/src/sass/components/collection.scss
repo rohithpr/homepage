@@ -1,0 +1,25 @@
+.collection {
+  margin: 2rem 0rem;
+
+  &:hover {
+    background-color: $color-primary-light;
+  }
+
+  &-key {
+    text-align: center;
+    background-color: $color-secondary;
+    color: $color-primary;
+  }
+
+  &-item {
+    width: 100%;
+
+    &:hover {
+      background-color: $color-primary-highlight;
+    }
+  }
+
+  & a {
+    text-decoration: none;
+  }
+}
