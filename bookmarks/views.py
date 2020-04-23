@@ -18,7 +18,7 @@ class ItemViewSet(ModelViewSet):
 class CollectionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Collection
-        fields = ["key", "column", "row", "id"]
+        fields = ["key", "column", "row", "id", "item_set"]
 
 
 class CollectionViewSet(ModelViewSet):
