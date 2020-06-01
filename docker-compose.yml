@@ -13,7 +13,7 @@ services:
 
   web:
     build: .
-    command: python manage.py runserver 0.0.0.0:8000
+    command: bash bin/run_local.sh
     volumes:
       - .:/var/homepage
     ports:
