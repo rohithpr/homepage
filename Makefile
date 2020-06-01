@@ -8,7 +8,7 @@ bash:
 	docker exec -it homepage_web_1 bash
 
 reset:
-	python manage.py reset_db --noinput -c
-	python manage.py migrate
-	python manage.py loaddata collections
-	python manage.py loaddata items
+	docker-compose exec web ./manage.py reset_db --noinput -c
+	docker-compose exec web ./manage.py migrate
+	docker-compose exec web ./manage.py loaddata collections
+	docker-compose exec web ./manage.py loaddata items
