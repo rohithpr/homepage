@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:12
+    hostname: db
+    environment:
+      POSTGRES_PASSWORD: root
+      POSTGRES_USER: root
+      POSTGRES_DB: homepage
+    ports:
+      - "5432:5432"
+
+  ui:
+    build: ./frontend
+    volumes:
+      - ./frontend:/var/ui
+    ports:
+      - "8080:8080"
+
+  web:
+    build: .
+    command: bash bin/run_local.sh
+    volumes:
+      - .:/var/homepage
+    ports:
+      - "8000:8000"

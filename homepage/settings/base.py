@@ -94,6 +94,10 @@ DATABASES = {
         "ATOMIC_REQUESTS": True,
         "AUTOCOMMIT": True,
         "NAME": "homepage",
+        "USER": "root",
+        "PASSWORD": "root",
+        "HOST": "db",
+        "PORT": "5432",
     }
 }
 
