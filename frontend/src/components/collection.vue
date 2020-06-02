@@ -26,7 +26,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['allItems']),
+    ...mapGetters('items', ['allItems']),
     collectionItems () {
       // TODO: Sort by row number before returning
       return this.collection.items.map(itemId => {

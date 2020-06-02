@@ -45,6 +45,7 @@ const transformRawItems = (items) => {
 }
 
 export default {
+  namespaced: true,
   state,
   getters,
   actions,
