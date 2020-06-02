@@ -1,12 +1,20 @@
 <template>
   <div class="collections">
-    <div class="container-fluid">
-      <div class="row">
-        <div v-for="columnNumber in [0, 1, 2, 3, 4, 5]" :key="columnNumber" class="col-md-2">
+    <v-container :fluid=true>
+      <v-row>
+        <!-- TODO: Make the number of columns customisable -->
+        <v-col
+          v-for="columnNumber in [0, 1, 2, 3, 4, 5]"
+          :key="columnNumber"
+          cols="12"
+          sm="6"
+          md="3"
+          lg="2"
+        >
           <CollectionColumn :columnNumber="columnNumber" />
-        </div>
-      </div>
-    </div>
+        </v-col>
+      </v-row>
+    </v-container>
   </div>
 </template>
 
