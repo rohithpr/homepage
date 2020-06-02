@@ -8,7 +8,7 @@
 
 <script>
 import Collection from './collection'
-import { mapState, mapGetters } from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'CollectionColumn',
@@ -22,7 +22,6 @@ export default {
     }
   },
   computed: {
-    ...mapState('collections', ['collections']),
     ...mapGetters('collections', ['getCollectionsInColumn']),
     column () {
       return this.getCollectionsInColumn(this.columnNumber)
