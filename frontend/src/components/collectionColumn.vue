@@ -25,12 +25,7 @@ export default {
     ...mapState('collections', ['collections']),
     ...mapGetters('collections', ['getCollectionsInColumn']),
     column () {
-      // TODO: Why does removing this `if` result in the computed not being updated
-      // when state changes?
-      if (this.collections.length) {
-        return this.getCollectionsInColumn(this.columnNumber)
-      }
-      return []
+      return this.getCollectionsInColumn(this.columnNumber)
     }
   }
 }

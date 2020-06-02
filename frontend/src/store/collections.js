@@ -31,6 +31,7 @@ const mutations = {
   addToCollections: (state, collections) => {
     collections = transformRawCollection(collections)
     state.collections = [...state.collections, ...collections]
+    state.columns = {...state.columns}
     collections.forEach(collection => {
       let column = collection.column
       state.columns[column] = [...state.columns[column] || [], collection]
