@@ -1,11 +1,14 @@
 import v0Client from '../api/api'
 
 const state = {
-  collections: []
+  collections: [],
+  columns: {}
 }
 
 const getters = {
-  allCollections: state => state.collections
+  getCollectionsInColumn: state => columnNumber => {
+    return state.columns[columnNumber] || []
+  }
 }
 
 const actions = {
@@ -23,10 +26,16 @@ const actions = {
 const mutations = {
   clearCollections: (state) => {
     state.collections = []
+    state.columns = {}
   },
   addToCollections: (state, collections) => {
     collections = transformRawCollection(collections)
     state.collections = [...state.collections, ...collections]
+    state.columns = {...state.columns}
+    collections.forEach(collection => {
+      let column = collection.column
+      state.columns[column] = [...state.columns[column] || [], collection]
+    })
   }
 }
 
@@ -41,6 +50,7 @@ const transformRawCollection = (collections) => {
 }
 
 export default {
+  namespaced: true,
   state,
   getters,
   actions,

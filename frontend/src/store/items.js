@@ -5,7 +5,13 @@ const state = {
 }
 
 const getters = {
-  allItems: state => state.items
+  allItems: state => state.items,
+  getItemsByIds: state => itemIds => {
+    // TODO: Sort by row number before returning
+    return itemIds.map(itemId => {
+      return state.items[itemId]
+    }).filter(item => item)
+  }
 }
 
 const actions = {
@@ -45,6 +51,7 @@ const transformRawItems = (items) => {
 }
 
 export default {
+  namespaced: true,
   state,
   getters,
   actions,

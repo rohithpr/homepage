@@ -26,12 +26,9 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['allItems']),
+    ...mapGetters('items', ['getItemsByIds']),
     collectionItems () {
-      // TODO: Sort by row number before returning
-      return this.collection.items.map(itemId => {
-        return this.allItems[itemId]
-      }).filter(item => item)
+      return this.getItemsByIds(this.collection.items)
     }
   }
 }
