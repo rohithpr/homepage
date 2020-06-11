@@ -22,7 +22,10 @@
       color="grey lighten-4"
     >
       <v-list>
-        <v-list-item link>
+        <v-list-item
+          link
+          @click="addCollection"
+        >
           <v-list-item-icon>
             <v-icon>add</v-icon>
           </v-list-item-icon>
@@ -33,6 +36,14 @@
       </v-list>
     </v-navigation-drawer>
     <v-content>
+      <v-dialog
+        v-model="collectionEditorActive"
+        :max-width="dialogMaxWidth"
+      >
+        <CollectionEditor
+          :collectionId=currentCollectionId
+        />
+      </v-dialog>
       <Collections />
     </v-content>
   </v-app>
@@ -40,16 +51,25 @@
 
 <script>
 import Collections from './components/collections'
+import CollectionEditor from './components/collectionEditor'
 
 export default {
   name: 'App',
   components: {
-    Collections
+    Collections,
+    CollectionEditor
   },
   data: () => ({
-    drawer: true
+    drawer: true,
+    dialogMaxWidth: "90rem",
+    collectionEditorActive: false,
+    currentCollectionId: null
   }),
   methods: {
+    addCollection () {
+      this.currentCollectionId = null
+      this.collectionEditorActive = true
+    }
   }
 }
 </script>
