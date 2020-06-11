@@ -91,6 +91,16 @@
   },
   {
     "model": "bookmarks.item",
+    "pk": 12,
+    "fields": {
+      "key": "Plex",
+      "value": "https://app.plex.tv/desktop",
+      "row": 1,
+      "collection": 9
+    }
+  },
+  {
+    "model": "bookmarks.item",
     "pk": 10,
     "fields": {
       "key": "Zooinverse",
