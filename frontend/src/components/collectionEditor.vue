@@ -7,15 +7,15 @@
       <v-form
         ref="form"
         v-model="valid"
-        :lazy-validation=false
       >
         <v-container>
           <v-row>
             <v-col cols="12" sm="6" md="4">
               <v-text-field
                 required
-                label="Collection name*"
+                label="Collection name"
                 v-model="key"
+                :rules="keyRules"
               />
             </v-col>
           </v-row>
@@ -44,15 +44,9 @@ export default {
       key: "",
       keyRules: [
         v => !!v || "Key is required",
-        v => (v && v.length >= 20) || "Name too long",
-        v => (v && v.length < 5) || "Name too short",
+        v => (v && v.length <= 20) || "Name too long",
+        v => (v && v.length >= 5) || "Name too short",
       ]
-    }
-  },
-  methods: {
-    validate () {
-      // Why is "form" not a member of refs?
-      this.$refs.form.validate()
     }
   }
 }
