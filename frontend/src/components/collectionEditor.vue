@@ -29,10 +29,6 @@
 export default {
   name: "CollectionEditor",
   props: {
-    active: {
-      type: Boolean,
-      default: false
-    },
     collectionId: {
       type: Object,
       default: null
